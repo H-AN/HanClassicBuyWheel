@@ -2,31 +2,29 @@
 // RequireBuyTime=false：无限购买时间，原生 B 同步放开。true 则沿用服务器原规则。
 // 主配置。AllWeapons=false 经典六分类；AllowedTeam=ct/t/any；OpenCommand 不含 sw_。修改后 sw_buywheel_reload。
 {
-    "HanClassicBuyWheel":  {
-                               "Enabled":  true,
-                               "AllWeapons":  false,
-                               "AllowedTeam":  "any",
-                               "AllowKnives":  false,
-                               "OpenCommand":  "buywheel",
-                               "UseNativeBuyKey":  false,
-                               "ClassicStyle":  true,
-                               "CloseOnDuck":  true,
-                               "LanguageMode":  "Auto",
-                               "DefaultLanguage":  "en",
-                               "RequireBuyZone":  true,
-                               "RequireBuyTime":  true,
-                               "BlockNativePurchases":  true,
-                               "FreezeMovement":  true,
-                               "SoundsEnabled":  true,
-                               "SoundVolume":  0.75,
-                               "ClickCooldownMs":  220,
-                               "MaxGrenades":  3,
-                               "MaxFlashbangs":  2,
-                               "RoundStartMoneyEnabled":  false,
-                               "RoundStartMoneyAdd":  true,
-                               "RoundStartMoney":  1000,
-                               "BannedWeapons":  [
-
-                                                 ]
-                           }
+    "HanClassicBuyWheel": {
+        "Enabled": true,
+        "AllWeapons": false,
+        "AllowedTeam": "any",
+        "AllowKnives": false,
+        "OpenCommand": "buywheel",
+        "UseNativeBuyKey": false,
+        "ClassicStyle": true,
+        "CloseOnDuck": true,
+        "LanguageMode": "Auto",
+        "DefaultLanguage": "en",
+        "RequireBuyZone": true,
+        "RequireBuyTime": true,
+        "BlockNativePurchases": true,
+        "FreezeMovement": true,
+        "SoundsEnabled": true,
+        "SoundVolume": 0.75,
+        "ClickCooldownMs": 220,
+        "MaxGrenades": 3,
+        "MaxFlashbangs": 2,
+        "RoundStartMoneyEnabled": false,
+        "RoundStartMoneyAdd": true,
+        "RoundStartMoney": 1000,
+        "BannedWeapons": []
+    }
 }

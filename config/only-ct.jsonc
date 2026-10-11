@@ -1,29 +1,27 @@
 {
-    "HanClassicBuyWheel":  {
-                               "Enabled":  true,
-                               "AllWeapons":  true,
-                               "AllowedTeam":  "ct",
-                               "AllowKnives":  false,
-                               "OpenCommand":  "buywheel",
-                               "UseNativeBuyKey":  false,
-                               "ClassicStyle":  true,
-                               "CloseOnDuck":  true,
-                               "LanguageMode":  "Auto",
-                               "DefaultLanguage":  "en",
-                               "RequireBuyZone":  true,
-                               "RequireBuyTime":  true,
-                               "BlockNativePurchases":  true,
-                               "FreezeMovement":  true,
-                               "SoundsEnabled":  true,
-                               "SoundVolume":  0.75,
-                               "ClickCooldownMs":  220,
-                               "MaxGrenades":  3,
-                               "MaxFlashbangs":  2,
-                               "RoundStartMoneyEnabled":  false,
-                               "RoundStartMoneyAdd":  true,
-                               "RoundStartMoney":  1000,
-                               "BannedWeapons":  [
-
-                                                 ]
-                           }
+    "HanClassicBuyWheel": {
+        "Enabled": true,
+        "AllWeapons": true,
+        "AllowedTeam": "ct",
+        "AllowKnives": false,
+        "OpenCommand": "buywheel",
+        "UseNativeBuyKey": false,
+        "ClassicStyle": true,
+        "CloseOnDuck": true,
+        "LanguageMode": "Auto",
+        "DefaultLanguage": "en",
+        "RequireBuyZone": true,
+        "RequireBuyTime": true,
+        "BlockNativePurchases": true,
+        "FreezeMovement": true,
+        "SoundsEnabled": true,
+        "SoundVolume": 0.75,
+        "ClickCooldownMs": 220,
+        "MaxGrenades": 3,
+        "MaxFlashbangs": 2,
+        "RoundStartMoneyEnabled": false,
+        "RoundStartMoneyAdd": true,
+        "RoundStartMoney": 1000,
+        "BannedWeapons": []
+    }
 }

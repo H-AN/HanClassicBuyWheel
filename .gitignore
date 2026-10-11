@@ -3,3 +3,20 @@
 .local/
 artifacts/
 *.user
+
+# Local development, testing and reference material
+tests/
+scripts/test/
+scripts/extract-reference.ps1
+scripts/restore-baseline.ps1
+docs/
+config/examples/legacy-ct/
+panorama/hit-regions.json
+
+# Editor and operating-system files
+.vs/
+.idea/
+*.suo
+*.log
+Thumbs.db
+.DS_Store
