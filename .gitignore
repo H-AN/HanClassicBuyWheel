@@ -21,4 +21,4 @@ panorama/hit-regions.json
 *.log
 Thumbs.db
 .DS_Store
-
+*.ps1
