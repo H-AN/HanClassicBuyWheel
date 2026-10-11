@@ -6,6 +6,7 @@ artifacts/
 
 # Local development, testing and reference material
 tests/
+scripts/
 scripts/test/
 scripts/extract-reference.ps1
 scripts/restore-baseline.ps1
@@ -20,4 +21,4 @@ panorama/hit-regions.json
 *.log
 Thumbs.db
 .DS_Store
-scripts/
+
