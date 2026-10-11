@@ -20,6 +20,9 @@
    panorama/layout/custom_game/hanclassicbuywheel.vxml_c
    panorama/styles/custom_game/hanclassicbuywheel.vcss_c
    ```
+   ```
+   创意工坊资源包 : 3818232419
+   ```
 
 3. 启动服务器或换图加载插件和资源。首次加载自动生成以下配置，位置为 `game/csgo/addons/swiftlys2/configs/plugins/HanClassicBuyWheel/`：
 
