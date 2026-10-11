@@ -1,0 +1,930 @@
+{
+    "Weapons":  {
+                    "Items":  [
+                                  {
+                                      "Id":  "ak47",
+                                      "Name":  "AK-47",
+                                      "NameEnglish":  "AK-47",
+                                      "Classname":  "weapon_ak47",
+                                      "Category":  "rifle",
+                                      "Price":  2700,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  0,
+                                      "CarryLimit":  1,
+                                      "Icon":  "ak47",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "galilar",
+                                      "Name":  "Galil AR",
+                                      "NameEnglish":  "Galil AR",
+                                      "Classname":  "weapon_galilar",
+                                      "Category":  "rifle",
+                                      "Price":  1800,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  1,
+                                      "CarryLimit":  1,
+                                      "Icon":  "galilar",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "famas",
+                                      "Name":  "FAMAS",
+                                      "NameEnglish":  "FAMAS",
+                                      "Classname":  "weapon_famas",
+                                      "Category":  "rifle",
+                                      "Price":  2050,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  2,
+                                      "CarryLimit":  1,
+                                      "Icon":  "famas",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "m4a1",
+                                      "Name":  "M4A4",
+                                      "NameEnglish":  "M4A4",
+                                      "Classname":  "weapon_m4a1",
+                                      "Category":  "rifle",
+                                      "Price":  3100,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  3,
+                                      "CarryLimit":  1,
+                                      "Icon":  "m4a1",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "m4a1_silencer",
+                                      "Name":  "M4A1-S",
+                                      "NameEnglish":  "M4A1-S",
+                                      "Classname":  "weapon_m4a1_silencer",
+                                      "Category":  "rifle",
+                                      "Price":  2900,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  4,
+                                      "CarryLimit":  1,
+                                      "Icon":  "m4a1_silencer",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "sg556",
+                                      "Name":  "SG 553",
+                                      "NameEnglish":  "SG 553",
+                                      "Classname":  "weapon_sg556",
+                                      "Category":  "rifle",
+                                      "Price":  3000,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  5,
+                                      "CarryLimit":  1,
+                                      "Icon":  "sg556",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "aug",
+                                      "Name":  "AUG",
+                                      "NameEnglish":  "AUG",
+                                      "Classname":  "weapon_aug",
+                                      "Category":  "rifle",
+                                      "Price":  3300,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  6,
+                                      "CarryLimit":  1,
+                                      "Icon":  "aug",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "hkp2000",
+                                      "Name":  "P2000",
+                                      "NameEnglish":  "P2000",
+                                      "Classname":  "weapon_hkp2000",
+                                      "Category":  "secondary",
+                                      "Price":  200,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  7,
+                                      "CarryLimit":  1,
+                                      "Icon":  "hkp2000",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "usp_silencer",
+                                      "Name":  "USP-S",
+                                      "NameEnglish":  "USP-S",
+                                      "Classname":  "weapon_usp_silencer",
+                                      "Category":  "secondary",
+                                      "Price":  200,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  8,
+                                      "CarryLimit":  1,
+                                      "Icon":  "usp_silencer",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "glock",
+                                      "Name":  "Glock-18",
+                                      "NameEnglish":  "Glock-18",
+                                      "Classname":  "weapon_glock",
+                                      "Category":  "secondary",
+                                      "Price":  200,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  9,
+                                      "CarryLimit":  1,
+                                      "Icon":  "glock",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "p250",
+                                      "Name":  "P250",
+                                      "NameEnglish":  "P250",
+                                      "Classname":  "weapon_p250",
+                                      "Category":  "secondary",
+                                      "Price":  300,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  10,
+                                      "CarryLimit":  1,
+                                      "Icon":  "p250",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "elite",
+                                      "Name":  "Dual Berettas",
+                                      "NameEnglish":  "Dual Berettas",
+                                      "Classname":  "weapon_elite",
+                                      "Category":  "secondary",
+                                      "Price":  300,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  11,
+                                      "CarryLimit":  1,
+                                      "Icon":  "elite",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "fiveseven",
+                                      "Name":  "Five-SeveN",
+                                      "NameEnglish":  "Five-SeveN",
+                                      "Classname":  "weapon_fiveseven",
+                                      "Category":  "secondary",
+                                      "Price":  500,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  12,
+                                      "CarryLimit":  1,
+                                      "Icon":  "fiveseven",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "tec9",
+                                      "Name":  "Tec-9",
+                                      "NameEnglish":  "Tec-9",
+                                      "Classname":  "weapon_tec9",
+                                      "Category":  "secondary",
+                                      "Price":  500,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  13,
+                                      "CarryLimit":  1,
+                                      "Icon":  "tec9",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "cz75a",
+                                      "Name":  "CZ75-Auto",
+                                      "NameEnglish":  "CZ75-Auto",
+                                      "Classname":  "weapon_cz75a",
+                                      "Category":  "secondary",
+                                      "Price":  500,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  14,
+                                      "CarryLimit":  1,
+                                      "Icon":  "cz75a",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "deagle",
+                                      "Name":  "Desert Eagle",
+                                      "NameEnglish":  "Desert Eagle",
+                                      "Classname":  "weapon_deagle",
+                                      "Category":  "secondary",
+                                      "Price":  700,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  15,
+                                      "CarryLimit":  1,
+                                      "Icon":  "deagle",
+                                      "ClassicSlotCT":  4,
+                                      "ClassicSlotT":  4,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "revolver",
+                                      "Name":  "R8 Revolver",
+                                      "NameEnglish":  "R8 Revolver",
+                                      "Classname":  "weapon_revolver",
+                                      "Category":  "secondary",
+                                      "Price":  600,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  16,
+                                      "CarryLimit":  1,
+                                      "Icon":  "revolver",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "mac10",
+                                      "Name":  "MAC-10",
+                                      "NameEnglish":  "MAC-10",
+                                      "Classname":  "weapon_mac10",
+                                      "Category":  "smg",
+                                      "Price":  1050,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  17,
+                                      "CarryLimit":  1,
+                                      "Icon":  "mac10",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "mp9",
+                                      "Name":  "MP9",
+                                      "NameEnglish":  "MP9",
+                                      "Classname":  "weapon_mp9",
+                                      "Category":  "smg",
+                                      "Price":  1250,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  18,
+                                      "CarryLimit":  1,
+                                      "Icon":  "mp9",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "ump45",
+                                      "Name":  "UMP-45",
+                                      "NameEnglish":  "UMP-45",
+                                      "Classname":  "weapon_ump45",
+                                      "Category":  "smg",
+                                      "Price":  1200,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  19,
+                                      "CarryLimit":  1,
+                                      "Icon":  "ump45",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "bizon",
+                                      "Name":  "PP-Bizon",
+                                      "NameEnglish":  "PP-Bizon",
+                                      "Classname":  "weapon_bizon",
+                                      "Category":  "smg",
+                                      "Price":  1400,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  20,
+                                      "CarryLimit":  1,
+                                      "Icon":  "bizon",
+                                      "ClassicSlotCT":  4,
+                                      "ClassicSlotT":  4,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "mp7",
+                                      "Name":  "MP7",
+                                      "NameEnglish":  "MP7",
+                                      "Classname":  "weapon_mp7",
+                                      "Category":  "smg",
+                                      "Price":  1500,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  21,
+                                      "CarryLimit":  1,
+                                      "Icon":  "mp7",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "mp5sd",
+                                      "Name":  "MP5-SD",
+                                      "NameEnglish":  "MP5-SD",
+                                      "Classname":  "weapon_mp5sd",
+                                      "Category":  "smg",
+                                      "Price":  1700,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  22,
+                                      "CarryLimit":  1,
+                                      "Icon":  "mp5sd",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "p90",
+                                      "Name":  "P90",
+                                      "NameEnglish":  "P90",
+                                      "Classname":  "weapon_p90",
+                                      "Category":  "smg",
+                                      "Price":  2350,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  23,
+                                      "CarryLimit":  1,
+                                      "Icon":  "p90",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "ssg08",
+                                      "Name":  "SSG 08",
+                                      "NameEnglish":  "SSG 08",
+                                      "Classname":  "weapon_ssg08",
+                                      "Category":  "rifle",
+                                      "Price":  1700,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  24,
+                                      "CarryLimit":  1,
+                                      "Icon":  "ssg08",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "awp",
+                                      "Name":  "AWP",
+                                      "NameEnglish":  "AWP",
+                                      "Classname":  "weapon_awp",
+                                      "Category":  "rifle",
+                                      "Price":  4750,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  25,
+                                      "CarryLimit":  1,
+                                      "Icon":  "awp",
+                                      "ClassicSlotCT":  4,
+                                      "ClassicSlotT":  4,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "scar20",
+                                      "Name":  "SCAR-20",
+                                      "NameEnglish":  "SCAR-20",
+                                      "Classname":  "weapon_scar20",
+                                      "Category":  "rifle",
+                                      "Price":  5000,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  26,
+                                      "CarryLimit":  1,
+                                      "Icon":  "scar20",
+                                      "ClassicSlotCT":  5,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "g3sg1",
+                                      "Name":  "G3SG1",
+                                      "NameEnglish":  "G3SG1",
+                                      "Classname":  "weapon_g3sg1",
+                                      "Category":  "rifle",
+                                      "Price":  5000,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  27,
+                                      "CarryLimit":  1,
+                                      "Icon":  "g3sg1",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  5,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "nova",
+                                      "Name":  "Nova",
+                                      "NameEnglish":  "Nova",
+                                      "Classname":  "weapon_nova",
+                                      "Category":  "heavy",
+                                      "Price":  1300,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  28,
+                                      "CarryLimit":  1,
+                                      "Icon":  "nova",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "xm1014",
+                                      "Name":  "XM1014",
+                                      "NameEnglish":  "XM1014",
+                                      "Classname":  "weapon_xm1014",
+                                      "Category":  "heavy",
+                                      "Price":  2000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  29,
+                                      "CarryLimit":  1,
+                                      "Icon":  "xm1014",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "mag7",
+                                      "Name":  "MAG-7",
+                                      "NameEnglish":  "MAG-7",
+                                      "Classname":  "weapon_mag7",
+                                      "Category":  "heavy",
+                                      "Price":  1300,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  30,
+                                      "CarryLimit":  1,
+                                      "Icon":  "mag7",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "sawedoff",
+                                      "Name":  "Sawed-Off",
+                                      "NameEnglish":  "Sawed-Off",
+                                      "Classname":  "weapon_sawedoff",
+                                      "Category":  "heavy",
+                                      "Price":  1100,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  31,
+                                      "CarryLimit":  1,
+                                      "Icon":  "sawedoff",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "negev",
+                                      "Name":  "Negev",
+                                      "NameEnglish":  "Negev",
+                                      "Classname":  "weapon_negev",
+                                      "Category":  "heavy",
+                                      "Price":  1700,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  32,
+                                      "CarryLimit":  1,
+                                      "Icon":  "negev",
+                                      "ClassicSlotCT":  4,
+                                      "ClassicSlotT":  4,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "m249",
+                                      "Name":  "M249",
+                                      "NameEnglish":  "M249",
+                                      "Classname":  "weapon_m249",
+                                      "Category":  "heavy",
+                                      "Price":  5200,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  33,
+                                      "CarryLimit":  1,
+                                      "Icon":  "m249",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "hegrenade",
+                                      "Name":  "高爆手雷",
+                                      "NameEnglish":  "HE Grenade",
+                                      "Classname":  "weapon_hegrenade",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  34,
+                                      "CarryLimit":  1,
+                                      "Icon":  "hegrenade",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "smokegrenade",
+                                      "Name":  "烟雾弹",
+                                      "NameEnglish":  "Smoke Grenade",
+                                      "Classname":  "weapon_smokegrenade",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  35,
+                                      "CarryLimit":  1,
+                                      "Icon":  "smokegrenade",
+                                      "ClassicSlotCT":  4,
+                                      "ClassicSlotT":  4,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "molotov",
+                                      "Name":  "燃烧瓶",
+                                      "NameEnglish":  "Molotov",
+                                      "Classname":  "weapon_molotov",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  36,
+                                      "CarryLimit":  1,
+                                      "Icon":  "molotov",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "incgrenade",
+                                      "Name":  "燃烧弹",
+                                      "NameEnglish":  "Incendiary Grenade",
+                                      "Classname":  "weapon_incgrenade",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  37,
+                                      "CarryLimit":  1,
+                                      "Icon":  "incgrenade",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "decoy",
+                                      "Name":  "诱饵弹",
+                                      "NameEnglish":  "Decoy Grenade",
+                                      "Classname":  "weapon_decoy",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  38,
+                                      "CarryLimit":  1,
+                                      "Icon":  "decoy",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "flashbang",
+                                      "Name":  "闪光弹",
+                                      "NameEnglish":  "Flashbang",
+                                      "Classname":  "weapon_flashbang",
+                                      "Category":  "grenades",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  39,
+                                      "CarryLimit":  2,
+                                      "Icon":  "flashbang",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "taser",
+                                      "Name":  "Zeus x27",
+                                      "NameEnglish":  "Zeus x27",
+                                      "Classname":  "weapon_taser",
+                                      "Category":  "equipment",
+                                      "Price":  200,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  40,
+                                      "CarryLimit":  1,
+                                      "Icon":  "taser",
+                                      "ClassicSlotCT":  2,
+                                      "ClassicSlotT":  2,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "healthshot",
+                                      "Name":  "回血针",
+                                      "NameEnglish":  "Healthshot",
+                                      "Classname":  "weapon_healthshot",
+                                      "Category":  "equipment",
+                                      "Price":  10000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Weapon",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  41,
+                                      "CarryLimit":  1,
+                                      "Icon":  "healthshot",
+                                      "ClassicSlotCT":  -1,
+                                      "ClassicSlotT":  -1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "kevlar",
+                                      "Name":  "防弹衣",
+                                      "NameEnglish":  "Kevlar",
+                                      "Classname":  "",
+                                      "Category":  "equipment",
+                                      "Price":  650,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "Kevlar",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  42,
+                                      "CarryLimit":  1,
+                                      "Icon":  "",
+                                      "ClassicSlotCT":  0,
+                                      "ClassicSlotT":  0,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "assaultsuit",
+                                      "Name":  "防弹衣 + 头盔",
+                                      "NameEnglish":  "Kevlar + Helmet",
+                                      "Classname":  "",
+                                      "Category":  "equipment",
+                                      "Price":  1000,
+                                      "Teams":  [
+                                                    2,
+                                                    3
+                                                ],
+                                      "Kind":  "AssaultSuit",
+                                      "Enabled":  true,
+                                      "StrictTeam":  false,
+                                      "Order":  43,
+                                      "CarryLimit":  1,
+                                      "Icon":  "",
+                                      "ClassicSlotCT":  1,
+                                      "ClassicSlotT":  1,
+                                      "DefinitionIndex":  0
+                                  },
+                                  {
+                                      "Id":  "defuser",
+                                      "Name":  "拆弹器",
+                                      "NameEnglish":  "Defuse Kit",
+                                      "Classname":  "",
+                                      "Category":  "equipment",
+                                      "Price":  400,
+                                      "Teams":  [
+                                                    3
+                                                ],
+                                      "Kind":  "Defuser",
+                                      "Enabled":  true,
+                                      "StrictTeam":  true,
+                                      "Order":  44,
+                                      "CarryLimit":  1,
+                                      "Icon":  "",
+                                      "ClassicSlotCT":  3,
+                                      "ClassicSlotT":  3,
+                                      "DefinitionIndex":  0
+                                  }
+                              ]
+                }
+}
