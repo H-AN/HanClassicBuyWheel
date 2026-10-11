@@ -4,7 +4,8 @@ $repo=Split-Path -Parent $PSScriptRoot
 $plugin=Join-Path $repo 'artifacts\server\plugins\HanClassicBuyWheel'
 $addon=Join-Path $repo 'artifacts\addon'
 foreach($file in @((Join-Path $plugin 'HanClassicBuyWheel.dll'),(Join-Path $addon 'panorama\layout\custom_game\hanclassicbuywheel.vxml_c'),(Join-Path $addon 'panorama\styles\custom_game\hanclassicbuywheel.vcss_c'))){if(!(Test-Path -LiteralPath $file)){throw ('Missing build artifact: '+$file)}}
-$name='HanClassicBuyWheel-1.0.0-'+[DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss')
+[xml]$project=Get-Content -LiteralPath (Join-Path $repo 'src\HanClassicBuyWheel\HanClassicBuyWheel.csproj') -Raw
+$name='HanClassicBuyWheel-'+$project.Project.PropertyGroup.Version+'-'+[DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss')
 $stage=Join-Path $repo ('artifacts\packages\'+$name)
 New-Item -ItemType Directory -Path (Join-Path $stage 'server\plugins') -Force|Out-Null
 Copy-Item -LiteralPath $plugin -Destination (Join-Path $stage 'server\plugins\HanClassicBuyWheel') -Recurse

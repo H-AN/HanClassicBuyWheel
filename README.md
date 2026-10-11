@@ -16,7 +16,7 @@
 
 **服务器和客户端均需加载 UI 资源。** 发布包 `addon` 包含编译好的两个 `_c` 文件。本地测试将其中 `panorama` 复制到服务端与客户端各自的 `game/csgo/panorama`，随后重启客户端。公共服务器需要地图/Workshop addon 挂载并下载资源；只安装 DLL 不能显示轮盘。项目未发布 Workshop，也未预设 Workshop ID。
 
-控制台 `sw_buywheel` 或聊天 `!buywheel` 打开。设置 `UseNativeBuyKey=true` 后可保留原生 `bind b buymenu`，插件通过 `open_buymenu` 接管、关闭原生页面并打开轮盘，已用真实客户端验证。原生 B 请求仍受引擎购买区域和购买时间限制；任意地点使用的模式还需服主设置 `mp_buy_anywhere`、`mp_buytime`。也可自行绑定 `bind b sw_buywheel`。
+控制台 `sw_buywheel` 或聊天 `!buywheel` 打开。设置 `UseNativeBuyKey=true` 后可保留原生 `bind b buymenu`，插件通过 `open_buymenu` 接管、关闭原生页面并打开轮盘，已用真实客户端验证。从 1.0.1 起，购买区域/时间开关会同步引擎规则：关闭限制后原生 B 也能随时随地打开，无需另写服务器 cvar。也可自行绑定 `bind b sw_buywheel`。
 
 ## 配置
 
@@ -32,7 +32,7 @@
 | ClassicStyle | 默认黑灰原版风格；false 切回透明队伍色风格 |
 | CloseOnDuck | 默认 true，下蹲关闭本插件全部层级与备用菜单 |
 | LanguageMode / DefaultLanguage | Auto 按玩家语言，中文 zh-CN、其余 en；Fixed 使用指定默认语言 |
-| RequireBuyZone / RequireBuyTime | 原生买区/买时检查，默认 true |
+| RequireBuyZone / RequireBuyTime | true 复用原生买区/买时；false 开启任何地点购买/无限购买时间，默认 true |
 | BlockNativePurchases | 阻止获准队伍用 buy/autobuy/rebuy 绕过自定义价格 |
 | FreezeMovement | 页面打开时冻结移动，光标捕获负责隔离鼠标与视角 |
 | SoundsEnabled / SoundVolume | 当前玩家的官方 UI 音效，音量 0~1 |
@@ -40,6 +40,17 @@
 | MaxGrenades / MaxFlashbangs | 配置额外上限，实际同时受 CS2 原生上限限制 |
 | BannedWeapons | 按 classname 禁用；也可在物品配置设 Enabled=false |
 | RoundStartMoneyEnabled | 默认 false；可按 RoundStartMoneyAdd / RoundStartMoney 补钱 |
+
+
+僵尸服可使用：
+
+```jsonc
+"UseNativeBuyKey": true,
+"RequireBuyZone": false,
+"RequireBuyTime": false
+```
+
+这会同步 `mp_buy_anywhere=1` 与`mp_buytime=9999`（秒），并解除已经结束的买时状态，支持运行超过45秒后再打开。两个引擎 cvar 对整个服务器生效；AllowedTeam 仍独立限制谁能使用轮盘。开启限制或卸载时恢复本插件接管前的值；地图开始、回合开始及配置重载时按开关设置，并明确复制给客户端；新加入玩家也会同步。配置 Enabled=false 也会释放接管。竞技服两项保持 true 即沿用原设置。
 
 闪光上限实时读取 `ammo_grenade_limit_flashbang`，其他手雷读取 `ammo_grenade_limit_default`，总数读取 `ammo_grenade_limit_total`。实际取配置上限与原生上限较小值，跟随休闲/竞技及服务器修改后的规则，不强行增加原生不允许的数量。默认额外限制总数三颗；想完全跟随原生总数，将 MaxGrenades 设为大于等于原生上限的值。成功或失败均留在投掷物页面，上限提示“你无法携带更多”。
 

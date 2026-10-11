@@ -17,6 +17,7 @@ for ($i=0; $i -lt 12; $i++) {
     }
     [void]$xml.AppendLine(('</Panel><Label id="hcw_name_{0}" class="ItemName" text="{{s:value}}" /><Label id="hcw_price_{0}" class="Price" text="{{s:value}}" /><Button id="hcw_choice_{0}" class="HitTarget" /></Panel></Panel>' -f $i))
 }
+for ($i=0; $i -lt 12; $i++) { [void]$xml.AppendLine(('<Panel class="Seam seam_{0}" hittest="false" />' -f $i)) }
 [void]$xml.AppendLine('<Button id="hcw_back" class="Center" hittest="true"><Label id="hcw_back_text" class="CenterHint" text="{s:value}" /></Button><Panel class="Rim" hittest="false" /></Panel>')
 [void]$xml.AppendLine('<Panel class="Details" hittest="false"><Label id="hcw_mode" class="Mode" text="{s:value}" /><Label id="hcw_path" class="Path" text="{s:value}" /><Label id="hcw_selected" class="SelectedName" text="{s:value}" /><Label id="hcw_details" class="DetailText" text="{s:value}" /><Label id="hcw_status" class="Status" text="{s:value}" /></Panel></Panel>')
 [void]$xml.AppendLine('<Panel class="Footer"><Label id="hcw_hint" class="Hint" text="{s:value}" /><Label id="hcw_page" class="Page" text="{s:value}" /><Button id="hcw_prev" class="FooterButton"><Label id="hcw_prev_text" text="{s:value}" /></Button><Button id="hcw_next" class="FooterButton"><Label id="hcw_next_text" text="{s:value}" /></Button><Button id="hcw_home" class="FooterButton"><Label id="hcw_home_text" text="{s:value}" /></Button><Button id="hcw_close" class="FooterButton"><Label id="hcw_close_text" text="{s:value}" /></Button><Label id="hcw_credit" class="Credit" text="{s:value}" /><Button id="hcw_language" class="FooterButton"><Label id="hcw_language_text" text="{s:value}" /></Button></Panel></Panel></Panel></Panel></root>')
@@ -35,6 +36,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .Wheel { width: 680px; height: 680px; margin-top: 10px; flow-children: none; border-radius: 50%; background-color: #25292be6; border: 0px solid transparent; }
 .Rim { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #d9b76c55; }
 .ct .Rim { border-color: #82b8df55; }
+.Seam { width: 100%; height: 100%; border-radius: 50%; background-color: #d9b76c; visibility: collapse; }
+.ct .Seam { background-color: #82b8df; }
 .Slot { width: 100%; height: 100%; flow-children: none; }
 .Wedge { width: 100%; height: 100%; background-color: #ffffff04; border-radius: 50%; }
 .HitTarget { horizontal-align: center; vertical-align: center; border-radius: 0px; background-color: transparent; border: 0px solid transparent; }
@@ -78,7 +81,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .Number { width: 30px; height: 24px; text-align: center; font-size: 20px; color: #c5c5c5; visibility: collapse; }
 .classic .Number { visibility: visible; }
 .classic .Wheel { background-color: #101010e8; }
-.classic .Rim { border: 7px solid #484848dd; }
+.classic .Rim { border: 7px solid #484848; }
+.classic .Seam { background-color: #484848; }
 .classic .Wedge { background-color: gradient(radial, 50% 50%, 0% 0%, 70% 70%, from(#262626), to(#131313)); }
 .classic .Slot:hover .Wedge { background-color: gradient(radial, 50% 50%, 0% 0%, 70% 70%, from(#595959), to(#363636)); }
 .classic .HitTarget { border-radius: 2px; }
@@ -124,9 +128,13 @@ for ($n=1; $n -le 12; $n++) {
         $hitRegions+=[ordered]@{Root=$false;Count=$n;Index=$i;CenterX=($x+72);CenterY=($y+60);Angle=$angle;Width=$hit[0];Height=$hit[1]}
         # Panorama radial 的 0 度在正上方，卡片的三角函数角度才以右侧为 0。
         $start=($offset+$step*$i-$step/2+360)%360
-        $span=$step-1.2
+        $span=$step
         [void]$css.AppendLine(('.count_{0} .slot_{1} .Card {{ position: {2}px {3}px 0px; }}' -f $n,$i,$x.ToString('F2',$culture),$y.ToString('F2',$culture)))
         [void]$css.AppendLine(('.count_{0} .slot_{1} .Wedge {{ clip: radial(50% 50%, {2}deg, {3}deg); }}' -f $n,$i,$start.ToString('F2',$culture),$span.ToString('F2',$culture)))
+        if ($n -gt 1) {
+            $seamStart=($start-0.6+360)%360
+            [void]$css.AppendLine(('.count_{0} .seam_{1} {{ visibility: visible; clip: radial(50% 50%, {2}deg, 1.20deg); }}' -f $n,$i,$seamStart.ToString('F2',$culture)))
+        }
         $numberX=340+[Math]::Cos($angle)*110-15; $numberY=340+[Math]::Sin($angle)*110-12
         [void]$css.AppendLine(('.count_{0} .slot_{1} .Number {{ position: {2}px {3}px 0px; }}' -f $n,$i,$numberX.ToString('F2',$culture),$numberY.ToString('F2',$culture)))
     }

@@ -11,6 +11,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .Wheel { width: 680px; height: 680px; margin-top: 10px; flow-children: none; border-radius: 50%; background-color: #25292be6; border: 0px solid transparent; }
 .Rim { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #d9b76c55; }
 .ct .Rim { border-color: #82b8df55; }
+.Seam { width: 100%; height: 100%; border-radius: 50%; background-color: #d9b76c; visibility: collapse; }
+.ct .Seam { background-color: #82b8df; }
 .Slot { width: 100%; height: 100%; flow-children: none; }
 .Wedge { width: 100%; height: 100%; background-color: #ffffff04; border-radius: 50%; }
 .HitTarget { horizontal-align: center; vertical-align: center; border-radius: 0px; background-color: transparent; border: 0px solid transparent; }
@@ -54,7 +56,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .Number { width: 30px; height: 24px; text-align: center; font-size: 20px; color: #c5c5c5; visibility: collapse; }
 .classic .Number { visibility: visible; }
 .classic .Wheel { background-color: #101010e8; }
-.classic .Rim { border: 7px solid #484848dd; }
+.classic .Rim { border: 7px solid #484848; }
+.classic .Seam { background-color: #484848; }
 .classic .Wedge { background-color: gradient(radial, 50% 50%, 0% 0%, 70% 70%, from(#262626), to(#131313)); }
 .classic .Slot:hover .Wedge { background-color: gradient(radial, 50% 50%, 0% 0%, 70% 70%, from(#595959), to(#363636)); }
 .classic .HitTarget { border-radius: 2px; }
@@ -70,6 +73,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .classic .root .Price { visibility: collapse; }
 .img_ak47 { background-image: url("s2r://panorama/images/icons/equipment/ak47.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_ak47 .img_ak47 { visibility: visible; }
+.img_assaultsuit { background-image: url("s2r://panorama/images/icons/equipment/assaultsuit.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
+.icon_assaultsuit .img_assaultsuit { visibility: visible; }
 .img_aug { background-image: url("s2r://panorama/images/icons/equipment/aug.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_aug .img_aug { visibility: visible; }
 .img_awp { background-image: url("s2r://panorama/images/icons/equipment/awp.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
@@ -84,6 +89,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .icon_deagle .img_deagle { visibility: visible; }
 .img_decoy { background-image: url("s2r://panorama/images/icons/equipment/decoy.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_decoy .img_decoy { visibility: visible; }
+.img_defuser { background-image: url("s2r://panorama/images/icons/equipment/defuser.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
+.icon_defuser .img_defuser { visibility: visible; }
 .img_elite { background-image: url("s2r://panorama/images/icons/equipment/elite.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_elite .img_elite { visibility: visible; }
 .img_famas { background-image: url("s2r://panorama/images/icons/equipment/famas.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
@@ -106,6 +113,8 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .icon_hkp2000 .img_hkp2000 { visibility: visible; }
 .img_incgrenade { background-image: url("s2r://panorama/images/icons/equipment/incgrenade.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_incgrenade .img_incgrenade { visibility: visible; }
+.img_kevlar { background-image: url("s2r://panorama/images/icons/equipment/kevlar.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
+.icon_kevlar .img_kevlar { visibility: visible; }
 .img_knife { background-image: url("s2r://panorama/images/icons/equipment/knife.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
 .icon_knife .img_knife { visibility: visible; }
 .img_knife_butterfly { background-image: url("s2r://panorama/images/icons/equipment/knife_butterfly.vsvg"); background-size: contain; background-position: center; background-repeat: no-repeat; }
@@ -198,315 +207,392 @@ Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft Ya
 .icon_xm1014 .img_xm1014 { visibility: visible; }
 .count_1 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_1 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_1 .slot_0 .Wedge { clip: radial(50% 50%, 180.00deg, 358.80deg); }
+.count_1 .slot_0 .Wedge { clip: radial(50% 50%, 180.00deg, 360.00deg); }
 .count_1 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_2 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_2 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_2 .slot_0 .Wedge { clip: radial(50% 50%, 270.00deg, 178.80deg); }
+.count_2 .slot_0 .Wedge { clip: radial(50% 50%, 270.00deg, 180.00deg); }
+.count_2 .seam_0 { visibility: visible; clip: radial(50% 50%, 269.40deg, 1.20deg); }
 .count_2 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_2 .slot_1 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_2 .slot_1 .Card { position: 268.00px 515.00px 0px; }
-.count_2 .slot_1 .Wedge { clip: radial(50% 50%, 90.00deg, 178.80deg); }
+.count_2 .slot_1 .Wedge { clip: radial(50% 50%, 90.00deg, 180.00deg); }
+.count_2 .seam_1 { visibility: visible; clip: radial(50% 50%, 89.40deg, 1.20deg); }
 .count_2 .slot_1 .Number { position: 325.00px 438.00px 0px; }
 .count_3 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_3 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_3 .slot_0 .Wedge { clip: radial(50% 50%, 300.00deg, 118.80deg); }
+.count_3 .slot_0 .Wedge { clip: radial(50% 50%, 300.00deg, 120.00deg); }
+.count_3 .seam_0 { visibility: visible; clip: radial(50% 50%, 299.40deg, 1.20deg); }
 .count_3 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_3 .slot_1 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_3 .slot_1 .Card { position: 471.52px 397.50px 0px; }
-.count_3 .slot_1 .Wedge { clip: radial(50% 50%, 60.00deg, 118.80deg); }
+.count_3 .slot_1 .Wedge { clip: radial(50% 50%, 60.00deg, 120.00deg); }
+.count_3 .seam_1 { visibility: visible; clip: radial(50% 50%, 59.40deg, 1.20deg); }
 .count_3 .slot_1 .Number { position: 420.26px 383.00px 0px; }
 .count_3 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_3 .slot_2 .Card { position: 64.48px 397.50px 0px; }
-.count_3 .slot_2 .Wedge { clip: radial(50% 50%, 180.00deg, 118.80deg); }
+.count_3 .slot_2 .Wedge { clip: radial(50% 50%, 180.00deg, 120.00deg); }
+.count_3 .seam_2 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_3 .slot_2 .Number { position: 229.74px 383.00px 0px; }
 .count_4 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_4 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_4 .slot_0 .Wedge { clip: radial(50% 50%, 315.00deg, 88.80deg); }
+.count_4 .slot_0 .Wedge { clip: radial(50% 50%, 315.00deg, 90.00deg); }
+.count_4 .seam_0 { visibility: visible; clip: radial(50% 50%, 314.40deg, 1.20deg); }
 .count_4 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_4 .slot_1 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_4 .slot_1 .Card { position: 503.00px 280.00px 0px; }
-.count_4 .slot_1 .Wedge { clip: radial(50% 50%, 45.00deg, 88.80deg); }
+.count_4 .slot_1 .Wedge { clip: radial(50% 50%, 45.00deg, 90.00deg); }
+.count_4 .seam_1 { visibility: visible; clip: radial(50% 50%, 44.40deg, 1.20deg); }
 .count_4 .slot_1 .Number { position: 435.00px 328.00px 0px; }
 .count_4 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_4 .slot_2 .Card { position: 268.00px 515.00px 0px; }
-.count_4 .slot_2 .Wedge { clip: radial(50% 50%, 135.00deg, 88.80deg); }
+.count_4 .slot_2 .Wedge { clip: radial(50% 50%, 135.00deg, 90.00deg); }
+.count_4 .seam_2 { visibility: visible; clip: radial(50% 50%, 134.40deg, 1.20deg); }
 .count_4 .slot_2 .Number { position: 325.00px 438.00px 0px; }
 .count_4 .slot_3 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_4 .slot_3 .Card { position: 33.00px 280.00px 0px; }
-.count_4 .slot_3 .Wedge { clip: radial(50% 50%, 225.00deg, 88.80deg); }
+.count_4 .slot_3 .Wedge { clip: radial(50% 50%, 225.00deg, 90.00deg); }
+.count_4 .seam_3 { visibility: visible; clip: radial(50% 50%, 224.40deg, 1.20deg); }
 .count_4 .slot_3 .Number { position: 215.00px 328.00px 0px; }
 .count_5 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_5 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_5 .slot_0 .Wedge { clip: radial(50% 50%, 324.00deg, 70.80deg); }
+.count_5 .slot_0 .Wedge { clip: radial(50% 50%, 324.00deg, 72.00deg); }
+.count_5 .seam_0 { visibility: visible; clip: radial(50% 50%, 323.40deg, 1.20deg); }
 .count_5 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_5 .slot_1 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_5 .slot_1 .Card { position: 491.50px 207.38px 0px; }
-.count_5 .slot_1 .Wedge { clip: radial(50% 50%, 36.00deg, 70.80deg); }
+.count_5 .slot_1 .Wedge { clip: radial(50% 50%, 36.00deg, 72.00deg); }
+.count_5 .seam_1 { visibility: visible; clip: radial(50% 50%, 35.40deg, 1.20deg); }
 .count_5 .slot_1 .Number { position: 429.62px 294.01px 0px; }
 .count_5 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_5 .slot_2 .Card { position: 406.13px 470.12px 0px; }
-.count_5 .slot_2 .Wedge { clip: radial(50% 50%, 108.00deg, 70.80deg); }
+.count_5 .slot_2 .Wedge { clip: radial(50% 50%, 108.00deg, 72.00deg); }
+.count_5 .seam_2 { visibility: visible; clip: radial(50% 50%, 107.40deg, 1.20deg); }
 .count_5 .slot_2 .Number { position: 389.66px 416.99px 0px; }
 .count_5 .slot_3 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_5 .slot_3 .Card { position: 129.87px 470.12px 0px; }
-.count_5 .slot_3 .Wedge { clip: radial(50% 50%, 180.00deg, 70.80deg); }
+.count_5 .slot_3 .Wedge { clip: radial(50% 50%, 180.00deg, 72.00deg); }
+.count_5 .seam_3 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_5 .slot_3 .Number { position: 260.34px 416.99px 0px; }
 .count_5 .slot_4 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_5 .slot_4 .Card { position: 44.50px 207.38px 0px; }
-.count_5 .slot_4 .Wedge { clip: radial(50% 50%, 252.00deg, 70.80deg); }
+.count_5 .slot_4 .Wedge { clip: radial(50% 50%, 252.00deg, 72.00deg); }
+.count_5 .seam_4 { visibility: visible; clip: radial(50% 50%, 251.40deg, 1.20deg); }
 .count_5 .slot_4 .Number { position: 220.38px 294.01px 0px; }
 .count_6 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_0 .Card { position: 150.50px 76.48px 0px; }
-.count_6 .slot_0 .Wedge { clip: radial(50% 50%, 300.00deg, 58.80deg); }
+.count_6 .slot_0 .Wedge { clip: radial(50% 50%, 300.00deg, 60.00deg); }
+.count_6 .seam_0 { visibility: visible; clip: radial(50% 50%, 299.40deg, 1.20deg); }
 .count_6 .slot_0 .Number { position: 270.00px 232.74px 0px; }
 .count_6 .slot_1 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_1 .Card { position: 385.50px 76.48px 0px; }
-.count_6 .slot_1 .Wedge { clip: radial(50% 50%, 0.00deg, 58.80deg); }
+.count_6 .slot_1 .Wedge { clip: radial(50% 50%, 0.00deg, 60.00deg); }
+.count_6 .seam_1 { visibility: visible; clip: radial(50% 50%, 359.40deg, 1.20deg); }
 .count_6 .slot_1 .Number { position: 380.00px 232.74px 0px; }
 .count_6 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_2 .Card { position: 503.00px 280.00px 0px; }
-.count_6 .slot_2 .Wedge { clip: radial(50% 50%, 60.00deg, 58.80deg); }
+.count_6 .slot_2 .Wedge { clip: radial(50% 50%, 60.00deg, 60.00deg); }
+.count_6 .seam_2 { visibility: visible; clip: radial(50% 50%, 59.40deg, 1.20deg); }
 .count_6 .slot_2 .Number { position: 435.00px 328.00px 0px; }
 .count_6 .slot_3 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_3 .Card { position: 385.50px 483.52px 0px; }
-.count_6 .slot_3 .Wedge { clip: radial(50% 50%, 120.00deg, 58.80deg); }
+.count_6 .slot_3 .Wedge { clip: radial(50% 50%, 120.00deg, 60.00deg); }
+.count_6 .seam_3 { visibility: visible; clip: radial(50% 50%, 119.40deg, 1.20deg); }
 .count_6 .slot_3 .Number { position: 380.00px 423.26px 0px; }
 .count_6 .slot_4 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_4 .Card { position: 150.50px 483.52px 0px; }
-.count_6 .slot_4 .Wedge { clip: radial(50% 50%, 180.00deg, 58.80deg); }
+.count_6 .slot_4 .Wedge { clip: radial(50% 50%, 180.00deg, 60.00deg); }
+.count_6 .seam_4 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_6 .slot_4 .Number { position: 270.00px 423.26px 0px; }
 .count_6 .slot_5 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_6 .slot_5 .Card { position: 33.00px 280.00px 0px; }
-.count_6 .slot_5 .Wedge { clip: radial(50% 50%, 240.00deg, 58.80deg); }
+.count_6 .slot_5 .Wedge { clip: radial(50% 50%, 240.00deg, 60.00deg); }
+.count_6 .seam_5 { visibility: visible; clip: radial(50% 50%, 239.40deg, 1.20deg); }
 .count_6 .slot_5 .Number { position: 215.00px 328.00px 0px; }
 .count_7 .slot_0 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_7 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_7 .slot_0 .Wedge { clip: radial(50% 50%, 334.29deg, 50.23deg); }
+.count_7 .slot_0 .Wedge { clip: radial(50% 50%, 334.29deg, 51.43deg); }
+.count_7 .seam_0 { visibility: visible; clip: radial(50% 50%, 333.69deg, 1.20deg); }
 .count_7 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_7 .slot_1 .HitTarget { width: 142.91px; height: 119.09px; }
 .count_7 .slot_1 .Card { position: 451.73px 133.48px 0px; }
-.count_7 .slot_1 .Wedge { clip: radial(50% 50%, 25.71deg, 50.23deg); }
+.count_7 .slot_1 .Wedge { clip: radial(50% 50%, 25.71deg, 51.43deg); }
+.count_7 .seam_1 { visibility: visible; clip: radial(50% 50%, 25.11deg, 1.20deg); }
 .count_7 .slot_1 .Number { position: 411.00px 259.42px 0px; }
 .count_7 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_7 .slot_2 .Card { position: 497.11px 332.29px 0px; }
-.count_7 .slot_2 .Wedge { clip: radial(50% 50%, 77.14deg, 50.23deg); }
+.count_7 .slot_2 .Wedge { clip: radial(50% 50%, 77.14deg, 51.43deg); }
+.count_7 .seam_2 { visibility: visible; clip: radial(50% 50%, 76.54deg, 1.20deg); }
 .count_7 .slot_2 .Number { position: 432.24px 352.48px 0px; }
 .count_7 .slot_3 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_7 .slot_3 .Card { position: 369.96px 491.73px 0px; }
-.count_7 .slot_3 .Wedge { clip: radial(50% 50%, 128.57deg, 50.23deg); }
+.count_7 .slot_3 .Wedge { clip: radial(50% 50%, 128.57deg, 51.43deg); }
+.count_7 .seam_3 { visibility: visible; clip: radial(50% 50%, 127.97deg, 1.20deg); }
 .count_7 .slot_3 .Number { position: 372.73px 427.11px 0px; }
 .count_7 .slot_4 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_7 .slot_4 .Card { position: 166.04px 491.73px 0px; }
-.count_7 .slot_4 .Wedge { clip: radial(50% 50%, 180.00deg, 50.23deg); }
+.count_7 .slot_4 .Wedge { clip: radial(50% 50%, 180.00deg, 51.43deg); }
+.count_7 .seam_4 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_7 .slot_4 .Number { position: 277.27px 427.11px 0px; }
 .count_7 .slot_5 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_7 .slot_5 .Card { position: 38.89px 332.29px 0px; }
-.count_7 .slot_5 .Wedge { clip: radial(50% 50%, 231.43deg, 50.23deg); }
+.count_7 .slot_5 .Wedge { clip: radial(50% 50%, 231.43deg, 51.43deg); }
+.count_7 .seam_5 { visibility: visible; clip: radial(50% 50%, 230.83deg, 1.20deg); }
 .count_7 .slot_5 .Number { position: 217.76px 352.48px 0px; }
 .count_7 .slot_6 .HitTarget { width: 142.91px; height: 119.09px; }
 .count_7 .slot_6 .Card { position: 84.27px 133.48px 0px; }
-.count_7 .slot_6 .Wedge { clip: radial(50% 50%, 282.86deg, 50.23deg); }
+.count_7 .slot_6 .Wedge { clip: radial(50% 50%, 282.86deg, 51.43deg); }
+.count_7 .seam_6 { visibility: visible; clip: radial(50% 50%, 282.26deg, 1.20deg); }
 .count_7 .slot_6 .Number { position: 239.00px 259.42px 0px; }
 .count_8 .slot_0 .HitTarget { width: 133.98px; height: 111.65px; }
 .count_8 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_8 .slot_0 .Wedge { clip: radial(50% 50%, 337.50deg, 43.80deg); }
+.count_8 .slot_0 .Wedge { clip: radial(50% 50%, 337.50deg, 45.00deg); }
+.count_8 .seam_0 { visibility: visible; clip: radial(50% 50%, 336.90deg, 1.20deg); }
 .count_8 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_8 .slot_1 .HitTarget { width: 131.10px; height: 109.25px; }
 .count_8 .slot_1 .Card { position: 434.17px 113.83px 0px; }
-.count_8 .slot_1 .Wedge { clip: radial(50% 50%, 22.50deg, 43.80deg); }
+.count_8 .slot_1 .Wedge { clip: radial(50% 50%, 22.50deg, 45.00deg); }
+.count_8 .seam_1 { visibility: visible; clip: radial(50% 50%, 21.90deg, 1.20deg); }
 .count_8 .slot_1 .Number { position: 402.78px 250.22px 0px; }
 .count_8 .slot_2 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_8 .slot_2 .Card { position: 503.00px 280.00px 0px; }
-.count_8 .slot_2 .Wedge { clip: radial(50% 50%, 67.50deg, 43.80deg); }
+.count_8 .slot_2 .Wedge { clip: radial(50% 50%, 67.50deg, 45.00deg); }
+.count_8 .seam_2 { visibility: visible; clip: radial(50% 50%, 66.90deg, 1.20deg); }
 .count_8 .slot_2 .Number { position: 435.00px 328.00px 0px; }
 .count_8 .slot_3 .HitTarget { width: 131.10px; height: 109.25px; }
 .count_8 .slot_3 .Card { position: 434.17px 446.17px 0px; }
-.count_8 .slot_3 .Wedge { clip: radial(50% 50%, 112.50deg, 43.80deg); }
+.count_8 .slot_3 .Wedge { clip: radial(50% 50%, 112.50deg, 45.00deg); }
+.count_8 .seam_3 { visibility: visible; clip: radial(50% 50%, 111.90deg, 1.20deg); }
 .count_8 .slot_3 .Number { position: 402.78px 405.78px 0px; }
 .count_8 .slot_4 .HitTarget { width: 133.98px; height: 111.65px; }
 .count_8 .slot_4 .Card { position: 268.00px 515.00px 0px; }
-.count_8 .slot_4 .Wedge { clip: radial(50% 50%, 157.50deg, 43.80deg); }
+.count_8 .slot_4 .Wedge { clip: radial(50% 50%, 157.50deg, 45.00deg); }
+.count_8 .seam_4 { visibility: visible; clip: radial(50% 50%, 156.90deg, 1.20deg); }
 .count_8 .slot_4 .Number { position: 325.00px 438.00px 0px; }
 .count_8 .slot_5 .HitTarget { width: 131.10px; height: 109.25px; }
 .count_8 .slot_5 .Card { position: 101.83px 446.17px 0px; }
-.count_8 .slot_5 .Wedge { clip: radial(50% 50%, 202.50deg, 43.80deg); }
+.count_8 .slot_5 .Wedge { clip: radial(50% 50%, 202.50deg, 45.00deg); }
+.count_8 .seam_5 { visibility: visible; clip: radial(50% 50%, 201.90deg, 1.20deg); }
 .count_8 .slot_5 .Number { position: 247.22px 405.78px 0px; }
 .count_8 .slot_6 .HitTarget { width: 144.00px; height: 120.00px; }
 .count_8 .slot_6 .Card { position: 33.00px 280.00px 0px; }
-.count_8 .slot_6 .Wedge { clip: radial(50% 50%, 247.50deg, 43.80deg); }
+.count_8 .slot_6 .Wedge { clip: radial(50% 50%, 247.50deg, 45.00deg); }
+.count_8 .seam_6 { visibility: visible; clip: radial(50% 50%, 246.90deg, 1.20deg); }
 .count_8 .slot_6 .Number { position: 215.00px 328.00px 0px; }
 .count_8 .slot_7 .HitTarget { width: 131.10px; height: 109.25px; }
 .count_8 .slot_7 .Card { position: 101.83px 113.83px 0px; }
-.count_8 .slot_7 .Wedge { clip: radial(50% 50%, 292.50deg, 43.80deg); }
+.count_8 .slot_7 .Wedge { clip: radial(50% 50%, 292.50deg, 45.00deg); }
+.count_8 .seam_7 { visibility: visible; clip: radial(50% 50%, 291.90deg, 1.20deg); }
 .count_8 .slot_7 .Number { position: 247.22px 250.22px 0px; }
 .count_9 .slot_0 .HitTarget { width: 120.17px; height: 100.14px; }
 .count_9 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_9 .slot_0 .Wedge { clip: radial(50% 50%, 340.00deg, 38.80deg); }
+.count_9 .slot_0 .Wedge { clip: radial(50% 50%, 340.00deg, 40.00deg); }
+.count_9 .seam_0 { visibility: visible; clip: radial(50% 50%, 339.40deg, 1.20deg); }
 .count_9 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_9 .slot_1 .HitTarget { width: 117.19px; height: 97.66px; }
 .count_9 .slot_1 .Card { position: 419.06px 99.98px 0px; }
-.count_9 .slot_1 .Wedge { clip: radial(50% 50%, 20.00deg, 38.80deg); }
+.count_9 .slot_1 .Wedge { clip: radial(50% 50%, 20.00deg, 40.00deg); }
+.count_9 .seam_1 { visibility: visible; clip: radial(50% 50%, 19.40deg, 1.20deg); }
 .count_9 .slot_1 .Number { position: 395.71px 243.74px 0px; }
 .count_9 .slot_2 .HitTarget { width: 120.50px; height: 100.42px; }
 .count_9 .slot_2 .Card { position: 499.43px 239.19px 0px; }
-.count_9 .slot_2 .Wedge { clip: radial(50% 50%, 60.00deg, 38.80deg); }
+.count_9 .slot_2 .Wedge { clip: radial(50% 50%, 60.00deg, 40.00deg); }
+.count_9 .seam_2 { visibility: visible; clip: radial(50% 50%, 59.40deg, 1.20deg); }
 .count_9 .slot_2 .Number { position: 433.33px 308.90px 0px; }
 .count_9 .slot_3 .HitTarget { width: 111.66px; height: 93.05px; }
 .count_9 .slot_3 .Card { position: 471.52px 397.50px 0px; }
-.count_9 .slot_3 .Wedge { clip: radial(50% 50%, 100.00deg, 38.80deg); }
+.count_9 .slot_3 .Wedge { clip: radial(50% 50%, 100.00deg, 40.00deg); }
+.count_9 .seam_3 { visibility: visible; clip: radial(50% 50%, 99.40deg, 1.20deg); }
 .count_9 .slot_3 .Number { position: 420.26px 383.00px 0px; }
 .count_9 .slot_4 .HitTarget { width: 111.63px; height: 93.03px; }
 .count_9 .slot_4 .Card { position: 348.37px 500.83px 0px; }
-.count_9 .slot_4 .Wedge { clip: radial(50% 50%, 140.00deg, 38.80deg); }
+.count_9 .slot_4 .Wedge { clip: radial(50% 50%, 140.00deg, 40.00deg); }
+.count_9 .seam_4 { visibility: visible; clip: radial(50% 50%, 139.40deg, 1.20deg); }
 .count_9 .slot_4 .Number { position: 362.62px 431.37px 0px; }
 .count_9 .slot_5 .HitTarget { width: 111.63px; height: 93.03px; }
 .count_9 .slot_5 .Card { position: 187.63px 500.83px 0px; }
-.count_9 .slot_5 .Wedge { clip: radial(50% 50%, 180.00deg, 38.80deg); }
+.count_9 .slot_5 .Wedge { clip: radial(50% 50%, 180.00deg, 40.00deg); }
+.count_9 .seam_5 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_9 .slot_5 .Number { position: 287.38px 431.37px 0px; }
 .count_9 .slot_6 .HitTarget { width: 111.66px; height: 93.05px; }
 .count_9 .slot_6 .Card { position: 64.48px 397.50px 0px; }
-.count_9 .slot_6 .Wedge { clip: radial(50% 50%, 220.00deg, 38.80deg); }
+.count_9 .slot_6 .Wedge { clip: radial(50% 50%, 220.00deg, 40.00deg); }
+.count_9 .seam_6 { visibility: visible; clip: radial(50% 50%, 219.40deg, 1.20deg); }
 .count_9 .slot_6 .Number { position: 229.74px 383.00px 0px; }
 .count_9 .slot_7 .HitTarget { width: 120.50px; height: 100.42px; }
 .count_9 .slot_7 .Card { position: 36.57px 239.19px 0px; }
-.count_9 .slot_7 .Wedge { clip: radial(50% 50%, 260.00deg, 38.80deg); }
+.count_9 .slot_7 .Wedge { clip: radial(50% 50%, 260.00deg, 40.00deg); }
+.count_9 .seam_7 { visibility: visible; clip: radial(50% 50%, 259.40deg, 1.20deg); }
 .count_9 .slot_7 .Number { position: 216.67px 308.90px 0px; }
 .count_9 .slot_8 .HitTarget { width: 117.19px; height: 97.66px; }
 .count_9 .slot_8 .Card { position: 116.94px 99.98px 0px; }
-.count_9 .slot_8 .Wedge { clip: radial(50% 50%, 300.00deg, 38.80deg); }
+.count_9 .slot_8 .Wedge { clip: radial(50% 50%, 300.00deg, 40.00deg); }
+.count_9 .seam_8 { visibility: visible; clip: radial(50% 50%, 299.40deg, 1.20deg); }
 .count_9 .slot_8 .Number { position: 254.29px 243.74px 0px; }
 .count_10 .slot_0 .HitTarget { width: 108.78px; height: 90.65px; }
 .count_10 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_10 .slot_0 .Wedge { clip: radial(50% 50%, 342.00deg, 34.80deg); }
+.count_10 .slot_0 .Wedge { clip: radial(50% 50%, 342.00deg, 36.00deg); }
+.count_10 .seam_0 { visibility: visible; clip: radial(50% 50%, 341.40deg, 1.20deg); }
 .count_10 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_10 .slot_1 .HitTarget { width: 101.82px; height: 84.85px; }
 .count_10 .slot_1 .Card { position: 406.13px 89.88px 0px; }
-.count_10 .slot_1 .Wedge { clip: radial(50% 50%, 18.00deg, 34.80deg); }
+.count_10 .slot_1 .Wedge { clip: radial(50% 50%, 18.00deg, 36.00deg); }
+.count_10 .seam_1 { visibility: visible; clip: radial(50% 50%, 17.40deg, 1.20deg); }
 .count_10 .slot_1 .Number { position: 389.66px 239.01px 0px; }
 .count_10 .slot_2 .HitTarget { width: 103.63px; height: 86.36px; }
 .count_10 .slot_2 .Card { position: 491.50px 207.38px 0px; }
-.count_10 .slot_2 .Wedge { clip: radial(50% 50%, 54.00deg, 34.80deg); }
+.count_10 .slot_2 .Wedge { clip: radial(50% 50%, 54.00deg, 36.00deg); }
+.count_10 .seam_2 { visibility: visible; clip: radial(50% 50%, 53.40deg, 1.20deg); }
 .count_10 .slot_2 .Number { position: 429.62px 294.01px 0px; }
 .count_10 .slot_3 .HitTarget { width: 103.63px; height: 86.36px; }
 .count_10 .slot_3 .Card { position: 491.50px 352.62px 0px; }
-.count_10 .slot_3 .Wedge { clip: radial(50% 50%, 90.00deg, 34.80deg); }
+.count_10 .slot_3 .Wedge { clip: radial(50% 50%, 90.00deg, 36.00deg); }
+.count_10 .seam_3 { visibility: visible; clip: radial(50% 50%, 89.40deg, 1.20deg); }
 .count_10 .slot_3 .Number { position: 429.62px 361.99px 0px; }
 .count_10 .slot_4 .HitTarget { width: 101.82px; height: 84.85px; }
 .count_10 .slot_4 .Card { position: 406.13px 470.12px 0px; }
-.count_10 .slot_4 .Wedge { clip: radial(50% 50%, 126.00deg, 34.80deg); }
+.count_10 .slot_4 .Wedge { clip: radial(50% 50%, 126.00deg, 36.00deg); }
+.count_10 .seam_4 { visibility: visible; clip: radial(50% 50%, 125.40deg, 1.20deg); }
 .count_10 .slot_4 .Number { position: 389.66px 416.99px 0px; }
 .count_10 .slot_5 .HitTarget { width: 108.78px; height: 90.65px; }
 .count_10 .slot_5 .Card { position: 268.00px 515.00px 0px; }
-.count_10 .slot_5 .Wedge { clip: radial(50% 50%, 162.00deg, 34.80deg); }
+.count_10 .slot_5 .Wedge { clip: radial(50% 50%, 162.00deg, 36.00deg); }
+.count_10 .seam_5 { visibility: visible; clip: radial(50% 50%, 161.40deg, 1.20deg); }
 .count_10 .slot_5 .Number { position: 325.00px 438.00px 0px; }
 .count_10 .slot_6 .HitTarget { width: 101.82px; height: 84.85px; }
 .count_10 .slot_6 .Card { position: 129.87px 470.12px 0px; }
-.count_10 .slot_6 .Wedge { clip: radial(50% 50%, 198.00deg, 34.80deg); }
+.count_10 .slot_6 .Wedge { clip: radial(50% 50%, 198.00deg, 36.00deg); }
+.count_10 .seam_6 { visibility: visible; clip: radial(50% 50%, 197.40deg, 1.20deg); }
 .count_10 .slot_6 .Number { position: 260.34px 416.99px 0px; }
 .count_10 .slot_7 .HitTarget { width: 103.63px; height: 86.36px; }
 .count_10 .slot_7 .Card { position: 44.50px 352.62px 0px; }
-.count_10 .slot_7 .Wedge { clip: radial(50% 50%, 234.00deg, 34.80deg); }
+.count_10 .slot_7 .Wedge { clip: radial(50% 50%, 234.00deg, 36.00deg); }
+.count_10 .seam_7 { visibility: visible; clip: radial(50% 50%, 233.40deg, 1.20deg); }
 .count_10 .slot_7 .Number { position: 220.38px 361.99px 0px; }
 .count_10 .slot_8 .HitTarget { width: 103.63px; height: 86.36px; }
 .count_10 .slot_8 .Card { position: 44.50px 207.38px 0px; }
-.count_10 .slot_8 .Wedge { clip: radial(50% 50%, 270.00deg, 34.80deg); }
+.count_10 .slot_8 .Wedge { clip: radial(50% 50%, 270.00deg, 36.00deg); }
+.count_10 .seam_8 { visibility: visible; clip: radial(50% 50%, 269.40deg, 1.20deg); }
 .count_10 .slot_8 .Number { position: 220.38px 294.01px 0px; }
 .count_10 .slot_9 .HitTarget { width: 101.82px; height: 84.85px; }
 .count_10 .slot_9 .Card { position: 129.87px 89.88px 0px; }
-.count_10 .slot_9 .Wedge { clip: radial(50% 50%, 306.00deg, 34.80deg); }
+.count_10 .slot_9 .Wedge { clip: radial(50% 50%, 306.00deg, 36.00deg); }
+.count_10 .seam_9 { visibility: visible; clip: radial(50% 50%, 305.40deg, 1.20deg); }
 .count_10 .slot_9 .Number { position: 260.34px 239.01px 0px; }
 .count_11 .slot_0 .HitTarget { width: 99.19px; height: 82.66px; }
 .count_11 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_11 .slot_0 .Wedge { clip: radial(50% 50%, 343.64deg, 31.53deg); }
+.count_11 .slot_0 .Wedge { clip: radial(50% 50%, 343.64deg, 32.73deg); }
+.count_11 .seam_0 { visibility: visible; clip: radial(50% 50%, 343.04deg, 1.20deg); }
 .count_11 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_11 .slot_1 .HitTarget { width: 90.30px; height: 75.25px; }
 .count_11 .slot_1 .Card { position: 395.05px 82.31px 0px; }
-.count_11 .slot_1 .Wedge { clip: radial(50% 50%, 16.36deg, 31.53deg); }
+.count_11 .slot_1 .Wedge { clip: radial(50% 50%, 16.36deg, 32.73deg); }
+.count_11 .seam_1 { visibility: visible; clip: radial(50% 50%, 15.76deg, 1.20deg); }
 .count_11 .slot_1 .Number { position: 384.47px 235.46px 0px; }
 .count_11 .slot_2 .HitTarget { width: 91.34px; height: 76.11px; }
 .count_11 .slot_2 .Card { position: 481.76px 182.38px 0px; }
-.count_11 .slot_2 .Wedge { clip: radial(50% 50%, 49.09deg, 31.53deg); }
+.count_11 .slot_2 .Wedge { clip: radial(50% 50%, 49.09deg, 32.73deg); }
+.count_11 .seam_2 { visibility: visible; clip: radial(50% 50%, 48.49deg, 1.20deg); }
 .count_11 .slot_2 .Number { position: 425.06px 282.30px 0px; }
 .count_11 .slot_3 .HitTarget { width: 101.12px; height: 84.26px; }
 .count_11 .slot_3 .Card { position: 500.61px 313.44px 0px; }
-.count_11 .slot_3 .Wedge { clip: radial(50% 50%, 81.82deg, 31.53deg); }
+.count_11 .slot_3 .Wedge { clip: radial(50% 50%, 81.82deg, 32.73deg); }
+.count_11 .seam_3 { visibility: visible; clip: radial(50% 50%, 81.22deg, 1.20deg); }
 .count_11 .slot_3 .Number { position: 433.88px 343.65px 0px; }
 .count_11 .slot_4 .HitTarget { width: 89.92px; height: 74.94px; }
 .count_11 .slot_4 .Card { position: 445.60px 433.89px 0px; }
-.count_11 .slot_4 .Wedge { clip: radial(50% 50%, 114.55deg, 31.53deg); }
+.count_11 .slot_4 .Wedge { clip: radial(50% 50%, 114.55deg, 32.73deg); }
+.count_11 .seam_4 { visibility: visible; clip: radial(50% 50%, 113.95deg, 1.20deg); }
 .count_11 .slot_4 .Number { position: 408.13px 400.03px 0px; }
 .count_11 .slot_5 .HitTarget { width: 90.71px; height: 75.59px; }
 .count_11 .slot_5 .Card { position: 334.21px 505.48px 0px; }
-.count_11 .slot_5 .Wedge { clip: radial(50% 50%, 147.27deg, 31.53deg); }
+.count_11 .slot_5 .Wedge { clip: radial(50% 50%, 147.27deg, 32.73deg); }
+.count_11 .seam_5 { visibility: visible; clip: radial(50% 50%, 146.67deg, 1.20deg); }
 .count_11 .slot_5 .Number { position: 355.99px 433.54px 0px; }
 .count_11 .slot_6 .HitTarget { width: 90.71px; height: 75.59px; }
 .count_11 .slot_6 .Card { position: 201.79px 505.48px 0px; }
-.count_11 .slot_6 .Wedge { clip: radial(50% 50%, 180.00deg, 31.53deg); }
+.count_11 .slot_6 .Wedge { clip: radial(50% 50%, 180.00deg, 32.73deg); }
+.count_11 .seam_6 { visibility: visible; clip: radial(50% 50%, 179.40deg, 1.20deg); }
 .count_11 .slot_6 .Number { position: 294.01px 433.54px 0px; }
 .count_11 .slot_7 .HitTarget { width: 89.92px; height: 74.94px; }
 .count_11 .slot_7 .Card { position: 90.40px 433.89px 0px; }
-.count_11 .slot_7 .Wedge { clip: radial(50% 50%, 212.73deg, 31.53deg); }
+.count_11 .slot_7 .Wedge { clip: radial(50% 50%, 212.73deg, 32.73deg); }
+.count_11 .seam_7 { visibility: visible; clip: radial(50% 50%, 212.13deg, 1.20deg); }
 .count_11 .slot_7 .Number { position: 241.87px 400.03px 0px; }
 .count_11 .slot_8 .HitTarget { width: 101.12px; height: 84.26px; }
 .count_11 .slot_8 .Card { position: 35.39px 313.44px 0px; }
-.count_11 .slot_8 .Wedge { clip: radial(50% 50%, 245.45deg, 31.53deg); }
+.count_11 .slot_8 .Wedge { clip: radial(50% 50%, 245.45deg, 32.73deg); }
+.count_11 .seam_8 { visibility: visible; clip: radial(50% 50%, 244.85deg, 1.20deg); }
 .count_11 .slot_8 .Number { position: 216.12px 343.65px 0px; }
 .count_11 .slot_9 .HitTarget { width: 91.34px; height: 76.11px; }
 .count_11 .slot_9 .Card { position: 54.24px 182.38px 0px; }
-.count_11 .slot_9 .Wedge { clip: radial(50% 50%, 278.18deg, 31.53deg); }
+.count_11 .slot_9 .Wedge { clip: radial(50% 50%, 278.18deg, 32.73deg); }
+.count_11 .seam_9 { visibility: visible; clip: radial(50% 50%, 277.58deg, 1.20deg); }
 .count_11 .slot_9 .Number { position: 224.94px 282.30px 0px; }
 .count_11 .slot_10 .HitTarget { width: 90.30px; height: 75.25px; }
 .count_11 .slot_10 .Card { position: 140.95px 82.31px 0px; }
-.count_11 .slot_10 .Wedge { clip: radial(50% 50%, 310.91deg, 31.53deg); }
+.count_11 .slot_10 .Wedge { clip: radial(50% 50%, 310.91deg, 32.73deg); }
+.count_11 .seam_10 { visibility: visible; clip: radial(50% 50%, 310.31deg, 1.20deg); }
 .count_11 .slot_10 .Number { position: 265.53px 235.46px 0px; }
 .count_12 .slot_0 .HitTarget { width: 91.00px; height: 75.83px; }
 .count_12 .slot_0 .Card { position: 268.00px 45.00px 0px; }
-.count_12 .slot_0 .Wedge { clip: radial(50% 50%, 345.00deg, 28.80deg); }
+.count_12 .slot_0 .Wedge { clip: radial(50% 50%, 345.00deg, 30.00deg); }
+.count_12 .seam_0 { visibility: visible; clip: radial(50% 50%, 344.40deg, 1.20deg); }
 .count_12 .slot_0 .Number { position: 325.00px 218.00px 0px; }
 .count_12 .slot_1 .HitTarget { width: 81.35px; height: 67.79px; }
 .count_12 .slot_1 .Card { position: 385.50px 76.48px 0px; }
-.count_12 .slot_1 .Wedge { clip: radial(50% 50%, 15.00deg, 28.80deg); }
+.count_12 .slot_1 .Wedge { clip: radial(50% 50%, 15.00deg, 30.00deg); }
+.count_12 .seam_1 { visibility: visible; clip: radial(50% 50%, 14.40deg, 1.20deg); }
 .count_12 .slot_1 .Number { position: 380.00px 232.74px 0px; }
 .count_12 .slot_2 .HitTarget { width: 81.87px; height: 68.22px; }
 .count_12 .slot_2 .Card { position: 471.52px 162.50px 0px; }
-.count_12 .slot_2 .Wedge { clip: radial(50% 50%, 45.00deg, 28.80deg); }
+.count_12 .slot_2 .Wedge { clip: radial(50% 50%, 45.00deg, 30.00deg); }
+.count_12 .seam_2 { visibility: visible; clip: radial(50% 50%, 44.40deg, 1.20deg); }
 .count_12 .slot_2 .Number { position: 420.26px 273.00px 0px; }
 .count_12 .slot_3 .HitTarget { width: 101.96px; height: 84.97px; }
 .count_12 .slot_3 .Card { position: 503.00px 280.00px 0px; }
-.count_12 .slot_3 .Wedge { clip: radial(50% 50%, 75.00deg, 28.80deg); }
+.count_12 .slot_3 .Wedge { clip: radial(50% 50%, 75.00deg, 30.00deg); }
+.count_12 .seam_3 { visibility: visible; clip: radial(50% 50%, 74.40deg, 1.20deg); }
 .count_12 .slot_3 .Number { position: 435.00px 328.00px 0px; }
 .count_12 .slot_4 .HitTarget { width: 81.87px; height: 68.22px; }
 .count_12 .slot_4 .Card { position: 471.52px 397.50px 0px; }
-.count_12 .slot_4 .Wedge { clip: radial(50% 50%, 105.00deg, 28.80deg); }
+.count_12 .slot_4 .Wedge { clip: radial(50% 50%, 105.00deg, 30.00deg); }
+.count_12 .seam_4 { visibility: visible; clip: radial(50% 50%, 104.40deg, 1.20deg); }
 .count_12 .slot_4 .Number { position: 420.26px 383.00px 0px; }
 .count_12 .slot_5 .HitTarget { width: 81.35px; height: 67.79px; }
 .count_12 .slot_5 .Card { position: 385.50px 483.52px 0px; }
-.count_12 .slot_5 .Wedge { clip: radial(50% 50%, 135.00deg, 28.80deg); }
+.count_12 .slot_5 .Wedge { clip: radial(50% 50%, 135.00deg, 30.00deg); }
+.count_12 .seam_5 { visibility: visible; clip: radial(50% 50%, 134.40deg, 1.20deg); }
 .count_12 .slot_5 .Number { position: 380.00px 423.26px 0px; }
 .count_12 .slot_6 .HitTarget { width: 91.00px; height: 75.83px; }
 .count_12 .slot_6 .Card { position: 268.00px 515.00px 0px; }
-.count_12 .slot_6 .Wedge { clip: radial(50% 50%, 165.00deg, 28.80deg); }
+.count_12 .slot_6 .Wedge { clip: radial(50% 50%, 165.00deg, 30.00deg); }
+.count_12 .seam_6 { visibility: visible; clip: radial(50% 50%, 164.40deg, 1.20deg); }
 .count_12 .slot_6 .Number { position: 325.00px 438.00px 0px; }
 .count_12 .slot_7 .HitTarget { width: 81.35px; height: 67.79px; }
 .count_12 .slot_7 .Card { position: 150.50px 483.52px 0px; }
-.count_12 .slot_7 .Wedge { clip: radial(50% 50%, 195.00deg, 28.80deg); }
+.count_12 .slot_7 .Wedge { clip: radial(50% 50%, 195.00deg, 30.00deg); }
+.count_12 .seam_7 { visibility: visible; clip: radial(50% 50%, 194.40deg, 1.20deg); }
 .count_12 .slot_7 .Number { position: 270.00px 423.26px 0px; }
 .count_12 .slot_8 .HitTarget { width: 81.87px; height: 68.22px; }
 .count_12 .slot_8 .Card { position: 64.48px 397.50px 0px; }
-.count_12 .slot_8 .Wedge { clip: radial(50% 50%, 225.00deg, 28.80deg); }
+.count_12 .slot_8 .Wedge { clip: radial(50% 50%, 225.00deg, 30.00deg); }
+.count_12 .seam_8 { visibility: visible; clip: radial(50% 50%, 224.40deg, 1.20deg); }
 .count_12 .slot_8 .Number { position: 229.74px 383.00px 0px; }
 .count_12 .slot_9 .HitTarget { width: 101.96px; height: 84.97px; }
 .count_12 .slot_9 .Card { position: 33.00px 280.00px 0px; }
-.count_12 .slot_9 .Wedge { clip: radial(50% 50%, 255.00deg, 28.80deg); }
+.count_12 .slot_9 .Wedge { clip: radial(50% 50%, 255.00deg, 30.00deg); }
+.count_12 .seam_9 { visibility: visible; clip: radial(50% 50%, 254.40deg, 1.20deg); }
 .count_12 .slot_9 .Number { position: 215.00px 328.00px 0px; }
 .count_12 .slot_10 .HitTarget { width: 81.87px; height: 68.22px; }
 .count_12 .slot_10 .Card { position: 64.48px 162.50px 0px; }
-.count_12 .slot_10 .Wedge { clip: radial(50% 50%, 285.00deg, 28.80deg); }
+.count_12 .slot_10 .Wedge { clip: radial(50% 50%, 285.00deg, 30.00deg); }
+.count_12 .seam_10 { visibility: visible; clip: radial(50% 50%, 284.40deg, 1.20deg); }
 .count_12 .slot_10 .Number { position: 229.74px 273.00px 0px; }
 .count_12 .slot_11 .HitTarget { width: 81.35px; height: 67.79px; }
 .count_12 .slot_11 .Card { position: 150.50px 76.48px 0px; }
-.count_12 .slot_11 .Wedge { clip: radial(50% 50%, 315.00deg, 28.80deg); }
+.count_12 .slot_11 .Wedge { clip: radial(50% 50%, 315.00deg, 30.00deg); }
+.count_12 .seam_11 { visibility: visible; clip: radial(50% 50%, 314.40deg, 1.20deg); }
 .count_12 .slot_11 .Number { position: 270.00px 232.74px 0px; }
 .root.count_6 .slot_0 .HitTarget { width: 164.25px; height: 138.32px; }
 .root.count_6 .slot_0 .Card { position: 132.50px 65.14px 0px; }

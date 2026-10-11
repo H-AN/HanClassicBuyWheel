@@ -5,6 +5,7 @@ using SwiftlyS2.Shared.Events;
 using SwiftlyS2.Shared.Plugins;
 using SwiftlyS2.Shared.SchemaDefinitions;
 using SwiftlyS2.Shared.ProtobufDefinitions;
+using SwiftlyS2.Shared.Natives;
 
 [PluginMetadata(Id = "ClassicWheelProbe", Name = "Classic wheel local probe", Author = "H-AN", Version = "1.0.0", Description = "临时测试探针，不放入发布包")]
 public sealed class ServerProbe(ISwiftlyCore core) : BasePlugin(core)
@@ -28,6 +29,12 @@ public sealed class ServerProbe(ISwiftlyCore core) : BasePlugin(core)
     {
         if (context.Sender is not null) { context.Reply("server only"); return; }
         var players = Core.PlayerManager.GetAllPlayers().Where(p => p.IsValid && !p.IsFakeClient).ToArray();
+        if (context.Args.FirstOrDefault() == "relocate")
+        {
+            foreach (var player in players)
+                if (player.PlayerPawn is { IsValid: true } pawn) pawn.Teleport(new Vector(400, 1000, 0), null, null);
+            return;
+        }
         if (context.Args.FirstOrDefault() == "clientcommand")
         {
             foreach (var player in players) Core.NetMessage.Send<CNETMsg_StringCmd>(message =>
@@ -93,6 +100,8 @@ public sealed class ServerProbe(ISwiftlyCore core) : BasePlugin(core)
             Money = p.Controller.InGameMoneyServices?.Account, Armor = p.PlayerPawn?.ArmorValue,
             EyePitch = p.PlayerPawn?.EyeAngles.X, EyeYaw = p.PlayerPawn?.EyeAngles.Y,
             BuyMenuOpen = p.PlayerPawn?.IsBuyMenuOpen,
+            InBuyZone = p.PlayerPawn?.InBuyZone,
+            PositionX = p.PlayerPawn?.AbsOrigin?.X, PositionY = p.PlayerPawn?.AbsOrigin?.Y, PositionZ = p.PlayerPawn?.AbsOrigin?.Z,
             Helmet = p.PlayerPawn?.ItemServices?.As<CCSPlayer_ItemServices>().HasHelmet,
             Defuser = p.PlayerPawn?.ItemServices?.As<CCSPlayer_ItemServices>().HasDefuser,
             Weapons = p.PlayerPawn?.WeaponServices?.MyWeapons.Select(h => h.Value).Where(w => w is { IsValid: true })
@@ -105,7 +114,12 @@ public sealed class ServerProbe(ISwiftlyCore core) : BasePlugin(core)
                 Selected = ReadText(h, "hcw_selected"), Status = ReadText(h, "hcw_status"),
                 Capture = players.Select(p => h.IsInputCaptureEnabledForPlayer(p.PlayerID)).ToArray()
             }).ToArray();
-        var snapshot = new { Label = context.Args.FirstOrDefault() ?? "snapshot", Players = snapshots, Huds = huds, Clicks = _clicks, LastButton = _lastButton };
+        var rules = Core.EntitySystem.GetGameRules();
+        var snapshot = new { Label = context.Args.FirstOrDefault() ?? "snapshot", Players = snapshots, Huds = huds, Clicks = _clicks, LastButton = _lastButton,
+            BuyTimeEnded = rules?.BuyTimeEnded, RoundStartTime = rules?.RoundStartTime.Value,
+            CurrentTime = Core.Engine.GlobalVars.CurrentTime,
+            BuyAnywhere = Core.ConVar.FindAsString("mp_buy_anywhere")?.ValueAsString,
+            BuyTime = Core.ConVar.FindAsString("mp_buytime")?.ValueAsString };
         string directory = Core.PluginDataDirectory;
         string label = context.Args.FirstOrDefault() ?? "snapshot";
         if (!label.All(c => char.IsAsciiLetterOrDigit(c) || c is '-' or '_')) { context.Reply("invalid label"); return; }

@@ -72,3 +72,7 @@ AllWeapons=true 时每类加入双方物品和替换枪型，最多十二项一�
 Release 零警告、四十一项规则/交易/语言/结构/几何检查，两个 Panorama 文件实际编译。真实客户端证据与尚未覆盖的多人和 Workshop 分发见 docs/validation.md，不把单人散文件测试等同于公开分发完成。
 
 完整原版本备份：artifacts/backups/mouse-baseline-20261012-043453。ClassicStyle=false 可保留新功能切回透明外观；完整源代码/产物回滚使用 scripts/restore-baseline.ps1，先归档现版本。正式包仅包含新插件、资源、三配置与示例、文档及源码 UI，不包含旧插件或测试探针。
+
+## 1.0.1 修复（2026-10-12）
+
+RequireBuyZone=false 才应用 mp_buy_anywhere=1，RequireBuyTime=false 才应用 mp_buytime=9999 秒；true 沿用原服务器规则。配置加载/重载、地图开始、回合开始同步设置，显式复制到客户端，新玩家在出生就绪后同步。重新开启限制或卸载只恢复本插件持有的原值。扇区取消透明间隔，使用外圈同色 #484848 实线；补齐 kevlar/assaultsuit/defuser 官方 SVG 图标。正式插件不包含 CWB 测试命令或日志，临时探针从部署目录移出。

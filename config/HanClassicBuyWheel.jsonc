@@ -1,3 +1,5 @@
+// RequireBuyZone=false：任何地点可购买，原生 B 同步放开。
+// RequireBuyTime=false：无限购买时间，原生 B 同步放开。true 则沿用服务器原规则。
 // 主配置。AllWeapons=false 经典六分类；AllowedTeam=ct/t/any；OpenCommand 不含 sw_。修改后 sw_buywheel_reload。
 {
     "HanClassicBuyWheel":  {

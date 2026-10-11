@@ -879,7 +879,7 @@
                                       "StrictTeam":  false,
                                       "Order":  42,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "kevlar",
                                       "ClassicSlotCT":  0,
                                       "ClassicSlotT":  0,
                                       "DefinitionIndex":  0
@@ -900,7 +900,7 @@
                                       "StrictTeam":  false,
                                       "Order":  43,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "assaultsuit",
                                       "ClassicSlotCT":  1,
                                       "ClassicSlotT":  1,
                                       "DefinitionIndex":  0
@@ -920,7 +920,7 @@
                                       "StrictTeam":  true,
                                       "Order":  44,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "defuser",
                                       "ClassicSlotCT":  3,
                                       "ClassicSlotT":  3,
                                       "DefinitionIndex":  0

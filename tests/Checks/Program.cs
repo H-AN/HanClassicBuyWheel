@@ -92,4 +92,10 @@ Check(insideWedges, "所有点击区四角严格位于对应扇区、圆周内�
 string css = File.ReadAllText(Path.Combine(repo, "panorama/styles/custom_game/hanclassicbuywheel.vcss"));
 Check(css.Contains(".HitTarget:hover { background-color: transparent; border: 0px solid transparent; }")
     && css.Contains(".classic .Slot:hover .Wedge"), "按钮方框隐藏，仅扇区高亮");
+Check(new[] { "kevlar", "assaultsuit", "defuser" }.All(id => classic.Items[id].Icon == id
+    && css.Contains(".img_" + id + " { background-image:")), "护甲、全甲和拆弹器配置与编译图标齐全");
+Check(XDocument.Load(Path.Combine(repo, "panorama/layout/custom_game/hanclassicbuywheel.vxml"))
+    .Descendants("Panel").Count(p => p.Attribute("class")?.Value.StartsWith("Seam seam_") == true) == 12
+    && css.Contains(".classic .Seam { background-color: #484848; }")
+    && css.Contains(".classic .Rim { border: 7px solid #484848; }"), "扇区实线描边覆盖十二项且与外圈同色");
 Console.WriteLine($"{checks} checks passed");

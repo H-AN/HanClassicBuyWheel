@@ -4,7 +4,7 @@
 
 ## 构建与配置
 
-- Release 构建成功、零警告；41 项检查通过：队伍/全武器/禁用规则、原版槽位留空、分页、购买与失败退款、免费交易、中英翻译、三配置与旧服示例、布局 ID、91 个矩形点击区的四角边界。
+- Release 构建成功、零警告；43 项检查通过：队伍/全武器/禁用规则、原版槽位留空、分页、购买与失败退款、免费交易、中英翻译、三配置与旧服示例、布局 ID、91 个矩形点击区的四角边界。
 - CS2 resourcecompiler 实际编译成功：两个资源，零失败。图标使用游戏内置 SVG 的 CSS background-size:contain，避免拉伸。
 - 本地引擎导出的 42 种武器/投掷物/特殊物品价格全部与默认配置一致；额外护甲 650、全甲 1000、拆弹器 400。确认 Bizon 1300、MP7/MP5-SD 1400、FAMAS 1950、M4A4 2900、燃烧弹 500。旧配置价格仅在示例中保留。
 - 发布包白名单只带新插件、翻译/配置模板、UI 编译产物、配置示例与文档；不包含框架 SDK DLL、旧插件、参考 pbin/源码、测试探针。
@@ -46,3 +46,16 @@
 原鼠标版本完整备份保留于 `artifacts/backups/mouse-baseline-20261012-043453`，回滚步骤见 rollback.md。测试结束恢复框架原 core.jsonc，并移出临时探针；保留新插件、可编辑配置与本地专用 UI 资源供后续测试。
 
 回滚脚本另在 `.local/rollback-check-*` 隔离副本实际执行，确认当前目录归档、旧版恢复且没有新源文件残留。没有对真实项目执行回滚。最终安装的本机主配置为经典/any/刀关闭、原生 B 开启、买区/买时开启；公开包默认原生 B 关闭，可自行开启。
+
+
+## 1.0.1 本轮修复验收（2026-10-12）
+
+- 接缝：真实客户端 seam-native-b-current.png 确认 #484848 实线与外圈同色，透明缺口已消除；一至十二项均生成实线。
+- 图标：从本机 CS2 pak01_dir.vpk 确认 kevlar.vsvg_c、assaultsuit.vsvg_c、defuser.vsvg_c 均存在，源默认配置、模板、旧服示例及现有服务器空图标项已补齐，UI 实际重新编译并部署。
+- 限制恢复：native-strict-restored.json 中玩家 InBuyZone=false、回合99秒、BuyTimeEnded=true，cvar 恢复为0/45，HUD=0。
+- 原生 B 命令：native-9999-outside.json 中玩家 InBuyZone=false、回合244秒、存活CT，mp_buy_anywhere=1、mp_buytime=9999，原生 buymenu 命令成功接管为自己的HUD=1、Capture=true、原生BuyMenuOpen=false。
+- 同步：实测发现当前SDK的普通setter未可靠更新客户端原生cvar，补充显式 ReplicateToAll，以及出生就绪后新会话 ReplicateToClient；配置重载/地图/回合均按false开关应用。
+- 当前部署保留服主的 AllWeapons=true、AllowKnives=true、两限制false、音量1.0、回合加10000。测试已在原有其它插件同时加载的服务器执行，未修改旧插件源码/文件。
+- 临时 ClassicWheelProbe 已卸载并移出 plugins，正式源码没有 CWB/cwbprobe/Console.Write/LogDebug/LogTrace，正式包不含探针。现有服务器继续运行供服主测试。
+
+最终无探针验证：卸载探针后使用真实 B 按键并点击装备分类，final-equipment-icons-no-probe.png 明确显示防弹衣、头盔+背心、拆弹器三个官方图标，以及同色灰色接缝。玩家站在中路，原生 B 正常接管；此期间检查控制台没有 CWB 输出。

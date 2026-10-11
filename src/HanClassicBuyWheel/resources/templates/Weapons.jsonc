@@ -1,4 +1,3 @@
-// 独立武器配置。Price 自定义价格；ClassicSlotCT/T=0~5，装备0~3；-1仅全武器显示。换用 USP-S 等时先将原武器槽改为-1。
 {
     "Weapons":  {
                     "Items":  [
@@ -880,7 +879,7 @@
                                       "StrictTeam":  false,
                                       "Order":  42,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "kevlar",
                                       "ClassicSlotCT":  0,
                                       "ClassicSlotT":  0,
                                       "DefinitionIndex":  0
@@ -901,7 +900,7 @@
                                       "StrictTeam":  false,
                                       "Order":  43,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "assaultsuit",
                                       "ClassicSlotCT":  1,
                                       "ClassicSlotT":  1,
                                       "DefinitionIndex":  0
@@ -921,7 +920,7 @@
                                       "StrictTeam":  true,
                                       "Order":  44,
                                       "CarryLimit":  1,
-                                      "Icon":  "",
+                                      "Icon":  "defuser",
                                       "ClassicSlotCT":  3,
                                       "ClassicSlotT":  3,
                                       "DefinitionIndex":  0

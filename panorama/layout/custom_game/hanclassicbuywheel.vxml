@@ -4,6 +4,7 @@
 <Panel class="Body"><Panel id="hcw_wheel" class="Wheel" hittest="false">
 <Panel id="hcw_slot_0" class="Slot slot_0" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="1" /><Panel id="hcw_card_0" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -11,6 +12,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -22,6 +24,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -70,6 +73,7 @@
 </Panel><Label id="hcw_name_0" class="ItemName" text="{s:value}" /><Label id="hcw_price_0" class="Price" text="{s:value}" /><Button id="hcw_choice_0" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_1" class="Slot slot_1" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="2" /><Panel id="hcw_card_1" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -77,6 +81,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -88,6 +93,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -136,6 +142,7 @@
 </Panel><Label id="hcw_name_1" class="ItemName" text="{s:value}" /><Label id="hcw_price_1" class="Price" text="{s:value}" /><Button id="hcw_choice_1" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_2" class="Slot slot_2" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="3" /><Panel id="hcw_card_2" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -143,6 +150,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -154,6 +162,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -202,6 +211,7 @@
 </Panel><Label id="hcw_name_2" class="ItemName" text="{s:value}" /><Label id="hcw_price_2" class="Price" text="{s:value}" /><Button id="hcw_choice_2" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_3" class="Slot slot_3" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="4" /><Panel id="hcw_card_3" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -209,6 +219,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -220,6 +231,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -268,6 +280,7 @@
 </Panel><Label id="hcw_name_3" class="ItemName" text="{s:value}" /><Label id="hcw_price_3" class="Price" text="{s:value}" /><Button id="hcw_choice_3" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_4" class="Slot slot_4" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="5" /><Panel id="hcw_card_4" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -275,6 +288,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -286,6 +300,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -334,6 +349,7 @@
 </Panel><Label id="hcw_name_4" class="ItemName" text="{s:value}" /><Label id="hcw_price_4" class="Price" text="{s:value}" /><Button id="hcw_choice_4" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_5" class="Slot slot_5" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="6" /><Panel id="hcw_card_5" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -341,6 +357,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -352,6 +369,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -400,6 +418,7 @@
 </Panel><Label id="hcw_name_5" class="ItemName" text="{s:value}" /><Label id="hcw_price_5" class="Price" text="{s:value}" /><Button id="hcw_choice_5" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_6" class="Slot slot_6" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="7" /><Panel id="hcw_card_6" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -407,6 +426,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -418,6 +438,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -466,6 +487,7 @@
 </Panel><Label id="hcw_name_6" class="ItemName" text="{s:value}" /><Label id="hcw_price_6" class="Price" text="{s:value}" /><Button id="hcw_choice_6" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_7" class="Slot slot_7" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="8" /><Panel id="hcw_card_7" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -473,6 +495,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -484,6 +507,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -532,6 +556,7 @@
 </Panel><Label id="hcw_name_7" class="ItemName" text="{s:value}" /><Label id="hcw_price_7" class="Price" text="{s:value}" /><Button id="hcw_choice_7" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_8" class="Slot slot_8" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="9" /><Panel id="hcw_card_8" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -539,6 +564,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -550,6 +576,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -598,6 +625,7 @@
 </Panel><Label id="hcw_name_8" class="ItemName" text="{s:value}" /><Label id="hcw_price_8" class="Price" text="{s:value}" /><Button id="hcw_choice_8" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_9" class="Slot slot_9" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="10" /><Panel id="hcw_card_9" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -605,6 +633,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -616,6 +645,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -664,6 +694,7 @@
 </Panel><Label id="hcw_name_9" class="ItemName" text="{s:value}" /><Label id="hcw_price_9" class="Price" text="{s:value}" /><Button id="hcw_choice_9" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_10" class="Slot slot_10" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="11" /><Panel id="hcw_card_10" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -671,6 +702,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -682,6 +714,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -730,6 +763,7 @@
 </Panel><Label id="hcw_name_10" class="ItemName" text="{s:value}" /><Label id="hcw_price_10" class="Price" text="{s:value}" /><Button id="hcw_choice_10" class="HitTarget" /></Panel></Panel>
 <Panel id="hcw_slot_11" class="Slot slot_11" hittest="false"><Panel class="Wedge" hittest="false" /><Label class="Number" text="12" /><Panel id="hcw_card_11" class="Card" hittest="false"><Panel class="Icons" hittest="false">
 <Panel class="Icon img_ak47" hittest="false" />
+<Panel class="Icon img_assaultsuit" hittest="false" />
 <Panel class="Icon img_aug" hittest="false" />
 <Panel class="Icon img_awp" hittest="false" />
 <Panel class="Icon img_bayonet" hittest="false" />
@@ -737,6 +771,7 @@
 <Panel class="Icon img_cz75a" hittest="false" />
 <Panel class="Icon img_deagle" hittest="false" />
 <Panel class="Icon img_decoy" hittest="false" />
+<Panel class="Icon img_defuser" hittest="false" />
 <Panel class="Icon img_elite" hittest="false" />
 <Panel class="Icon img_famas" hittest="false" />
 <Panel class="Icon img_fiveseven" hittest="false" />
@@ -748,6 +783,7 @@
 <Panel class="Icon img_hegrenade" hittest="false" />
 <Panel class="Icon img_hkp2000" hittest="false" />
 <Panel class="Icon img_incgrenade" hittest="false" />
+<Panel class="Icon img_kevlar" hittest="false" />
 <Panel class="Icon img_knife" hittest="false" />
 <Panel class="Icon img_knife_butterfly" hittest="false" />
 <Panel class="Icon img_knife_canis" hittest="false" />
@@ -794,6 +830,18 @@
 <Panel class="Icon img_usp_silencer" hittest="false" />
 <Panel class="Icon img_xm1014" hittest="false" />
 </Panel><Label id="hcw_name_11" class="ItemName" text="{s:value}" /><Label id="hcw_price_11" class="Price" text="{s:value}" /><Button id="hcw_choice_11" class="HitTarget" /></Panel></Panel>
+<Panel class="Seam seam_0" hittest="false" />
+<Panel class="Seam seam_1" hittest="false" />
+<Panel class="Seam seam_2" hittest="false" />
+<Panel class="Seam seam_3" hittest="false" />
+<Panel class="Seam seam_4" hittest="false" />
+<Panel class="Seam seam_5" hittest="false" />
+<Panel class="Seam seam_6" hittest="false" />
+<Panel class="Seam seam_7" hittest="false" />
+<Panel class="Seam seam_8" hittest="false" />
+<Panel class="Seam seam_9" hittest="false" />
+<Panel class="Seam seam_10" hittest="false" />
+<Panel class="Seam seam_11" hittest="false" />
 <Button id="hcw_back" class="Center"><Label id="hcw_back_text" class="CenterHint" text="{s:value}" /></Button><Panel class="Rim" hittest="false" /></Panel>
 <Panel class="Details" hittest="false"><Label id="hcw_mode" class="Mode" text="{s:value}" /><Label id="hcw_path" class="Path" text="{s:value}" /><Label id="hcw_selected" class="SelectedName" text="{s:value}" /><Label id="hcw_details" class="DetailText" text="{s:value}" /><Label id="hcw_status" class="Status" text="{s:value}" /></Panel></Panel>
 <Panel class="Footer"><Label id="hcw_hint" class="Hint" text="{s:value}" /><Label id="hcw_page" class="Page" text="{s:value}" /><Button id="hcw_prev" class="FooterButton"><Label id="hcw_prev_text" text="{s:value}" /></Button><Button id="hcw_next" class="FooterButton"><Label id="hcw_next_text" text="{s:value}" /></Button><Button id="hcw_home" class="FooterButton"><Label id="hcw_home_text" text="{s:value}" /></Button><Button id="hcw_close" class="FooterButton"><Label id="hcw_close_text" text="{s:value}" /></Button><Label id="hcw_credit" class="Credit" text="{s:value}" /><Button id="hcw_language" class="FooterButton"><Label id="hcw_language_text" text="{s:value}" /></Button></Panel></Panel></Panel></Panel></root>

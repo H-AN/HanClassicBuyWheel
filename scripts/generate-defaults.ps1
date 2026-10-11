@@ -59,7 +59,7 @@ foreach ($row in ($rows -split '\r?\n')) {
     $items += $item; $order++
 }
 foreach ($equipment in @(@('kevlar','防弹衣','Kevlar',650),@('assaultsuit','防弹衣 + 头盔','AssaultSuit',1000),@('defuser','拆弹器','Defuser',400))) {
-    $items += [ordered]@{ Id=$equipment[0]; Name=$equipment[1]; NameEnglish=$englishNames[$equipment[0]]; Classname=''; Category='equipment'; Price=[int]$equipment[3]; Teams=[int[]]$(if ($equipment[0] -eq 'defuser') { @(3) } else { @(2,3) }); Kind=$equipment[2]; Enabled=$true; StrictTeam=($equipment[0] -eq 'defuser'); Order=$order; CarryLimit=1; Icon='' }; $order++
+    $items += [ordered]@{ Id=$equipment[0]; Name=$equipment[1]; NameEnglish=$englishNames[$equipment[0]]; Classname=''; Category='equipment'; Price=[int]$equipment[3]; Teams=[int[]]$(if ($equipment[0] -eq 'defuser') { @(3) } else { @(2,3) }); Kind=$equipment[2]; Enabled=$true; StrictTeam=($equipment[0] -eq 'defuser'); Order=$order; CarryLimit=1; Icon=$equipment[0] }; $order++
 }
 # 槽位与提供的原版截图一致；-1 表示只在全武器模式显示。
 $ct=@{secondary=@('hkp2000','elite','p250','fiveseven','deagle');heavy=@('nova','xm1014','mag7','m249','negev');smg=@('mp9','mp7','ump45','p90','bizon');rifle=@('famas','m4a1','ssg08','aug','awp','scar20');equipment=@('kevlar','assaultsuit','taser','defuser');grenades=@('incgrenade','decoy','flashbang','hegrenade','smokegrenade')}
@@ -93,7 +93,7 @@ foreach($row in ($knifeRows -split '\r?\n')){$p=$row.Split('|');$knives+=[ordere
 $config=[ordered]@{Enabled=$true;AllWeapons=$false;AllowedTeam='any';AllowKnives=$false;OpenCommand='buywheel';UseNativeBuyKey=$false;ClassicStyle=$true;CloseOnDuck=$true;LanguageMode='Auto';DefaultLanguage='en';RequireBuyZone=$true;RequireBuyTime=$true;BlockNativePurchases=$true;FreezeMovement=$true;SoundsEnabled=$true;SoundVolume=0.75;ClickCooldownMs=220;MaxGrenades=3;MaxFlashbangs=2;RoundStartMoneyEnabled=$false;RoundStartMoneyAdd=$true;RoundStartMoney=1000;BannedWeapons=@()}
 $utf8=New-Object Text.UTF8Encoding($false)
 function WriteConfig($name,$body,$comment){$output=Join-Path $repo ('config\'+$name);New-Item -ItemType Directory -Path (Split-Path $output -Parent) -Force|Out-Null;[IO.File]::WriteAllText($output,('// '+$comment+"`n"+($body|ConvertTo-Json -Depth 8)),$utf8);$template=Join-Path $repo ('src\HanClassicBuyWheel\resources\templates\'+$name);Copy-Item -LiteralPath $output -Destination $template -Force}
-WriteConfig 'HanClassicBuyWheel.jsonc' @{HanClassicBuyWheel=$config} '主配置。AllWeapons=false 经典六分类；AllowedTeam=ct/t/any；OpenCommand 不含 sw_。修改后 sw_buywheel_reload。'
+WriteConfig 'HanClassicBuyWheel.jsonc' @{HanClassicBuyWheel=$config} ("主配置。AllWeapons=false 经典六分类；AllowedTeam=ct/t/any；OpenCommand 不含 sw_。修改后 sw_buywheel_reload。`n// RequireBuyZone=false：任何地点可购买，原生 B 同步放开。`n// RequireBuyTime=false：无限购买时间；true 则沿用服务器原买时。")
 WriteConfig 'Weapons.jsonc' @{Weapons=@{Items=$items}} '独立武器配置。Price 自定义价格；ClassicSlotCT/T=0~5，装备0~3；-1仅全武器显示。换用 USP-S 等时先将原武器槽改为-1。'
 WriteConfig 'Knives.jsonc' @{Knives=@{Items=$knives}} '独立刀具配置。主配置 AllowKnives=true 启用；DefinitionIndex 刀型编号；Price=0 免费。'
 $config.AllWeapons=$true
