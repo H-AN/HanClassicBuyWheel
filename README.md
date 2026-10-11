@@ -190,14 +190,3 @@
 
 翻译文件位于插件目录的 `resources/translations/en.jsonc` 和 `zh-CN.jsonc`。选择和购买失败音效只播放给操作玩家；可通过 `SoundsEnabled` 关闭。
 
-## 从源码构建
-
-安装 .NET 10 SDK。构建 UI 还需要 CS2 Workshop Tools；`ToolsRoot` 为包含 `game` 和 `content` 的游戏根目录。
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-panorama.ps1 -ToolsRoot "你的 CS2 根目录"
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1
-```
-
-插件输出到 `artifacts/server/plugins/HanClassicBuyWheel`，编译 UI 输出到 `artifacts/addon`，发布压缩包输出到 `artifacts/packages`。修改 UI 生成规则后，先运行 `scripts/generate-panorama.ps1` 再编译；`scripts/generate-defaults.ps1 -Force` 会重建仓库默认配置，请先保存自己的修改。
