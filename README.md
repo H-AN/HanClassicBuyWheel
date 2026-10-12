@@ -15,7 +15,7 @@
 
 需要 SwiftlyS2 **1.4.13** 与 **.NET 10** 运行环境。
 
-1. 将发布包中的 `server/plugins/HanClassicBuyWheel` 整个目录复制到服务器 `game/csgo/addons/swiftlys2/plugins/`，保留其中的 `resources`。
+1. 将插件复制到服务器 game/csgo/addons/swiftlys2/plugins/ 中。
 2. 将发布包中的 `addon` UI 资源加入服务器使用的地图或资源 Workshop addon，并让服务器和连接的玩家均加载该 addon。资源路径须保留为：
 
    ```text
