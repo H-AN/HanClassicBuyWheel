@@ -15,8 +15,14 @@ public sealed partial class HanClassicBuyWheelPlugin
     public const string LayoutPath = "panorama/layout/custom_game/hanclassicbuywheel.vxml_c";
     private CHandle<CCSCustomHudLayout> _sharedHud;
 
+    private int CountSharedHuds() => _worldReady && WorldAvailable()
+        ? Core.EntitySystem.GetAllEntitiesByClass<CCSCustomHudLayout>().Count(h => h.IsValid && h.StrLayout == LayoutPath)
+        : 0;
+
     private CCSCustomHudLayout EnsureSharedHud()
     {
+        // 首位玩家入服时创建，全体复用；打开路径为热重载等情况补建。
+        if (!_worldReady || !WorldAvailable()) throw new InvalidOperationException("地图世界尚未就绪，不能创建购买轮盘 HUD。");
         if (_sharedHud.Value is { IsValid: true } existing) return existing;
         var hud = Core.EntitySystem.CreateEntity<CCSCustomHudLayout>();
         if (hud is not { IsValid: true }) throw new InvalidOperationException("HUD 创建失败");
@@ -35,17 +41,25 @@ public sealed partial class HanClassicBuyWheelPlugin
 
     private void DestroySharedHud()
     {
-        var hud = _sharedHud.Value;
+        var handle = _sharedHud;
         _sharedHud = default;
+        if (!WorldAvailable()) return;
+        var hud = handle.Value;
         if (hud is { IsValid: true }) hud.Despawn();
     }
 
     private void OnPutInServer(IOnClientPutInServerEvent e)
     {
-        if (_sharedHud.Value is not { IsValid: true } hud) return;
-        // 新连接的传输屏蔽表会重建，不能只在创建实体时屏蔽已有玩家。
-        hud.SetTransmitState(false, e.PlayerId);
-        hud.SetInputCaptureEnabledForPlayer(e.PlayerId, false);
+        if (_unloaded || !WorldAvailable()) return;
+        PrepareWorld();
+        try
+        {
+            var hud = EnsureSharedHud();
+            // 新连接的传输屏蔽表会重建，不能只在创建实体时屏蔽已有玩家。
+            hud.SetTransmitState(false, e.PlayerId);
+            hud.SetInputCaptureEnabledForPlayer(e.PlayerId, false);
+        }
+        catch (Exception ex) { Core.Logger.LogError(ex, "购买轮盘入服 HUD 初始化失败：slot={Slot}", e.PlayerId); }
     }
 
     private void Open(IPlayer player, BuyCatalog catalog)
@@ -78,8 +92,9 @@ public sealed partial class HanClassicBuyWheelPlugin
         try { RecordLocalHudClose(view, caller); }
         catch (Exception ex) { Core.Logger.LogWarning(ex, "本地关闭来源记录失败，继续清理玩家状态。"); }
 #endif
-        SuppressHeld(view);
-        if (_sharedHud.Value is { IsValid: true } hud && !_sessions.Values.Any(v => v.Owner.Slot == view.Owner.Slot))
+        bool worldAvailable = WorldAvailable();
+        if (worldAvailable) SuppressHeld(view);
+        if (worldAvailable && _sharedHud.Value is { IsValid: true } hud && !_sessions.Values.Any(v => v.Owner.Slot == view.Owner.Slot))
         {
             try
             {

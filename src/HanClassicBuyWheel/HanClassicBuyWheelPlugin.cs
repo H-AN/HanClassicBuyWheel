@@ -64,7 +64,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         Register("buywheel_wasd", context => WithPlayer(context, p => { Close(p.SessionId); OpenWasd(p); }));
         Register("buywheel_language", ChangeLanguage);
         Register("buywheel_reload", context => { context.Reply("配置重新读取已提交"); ReadConfiguration(); }, "hanclassicbuywheel.admin");
-        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.2 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count} | sharedHud={_sharedHud.Raw}"));
+        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.2 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count} | sharedHud={_sharedHud.Raw} | worldReady={_worldReady} | hudCount={CountSharedHuds()}"));
 #if WHEEL_LOCAL_TEST
         RegisterLocalHudTests();
 #endif
@@ -73,17 +73,14 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         Core.Event.OnClientPutInServer += OnPutInServer;
         Core.Event.OnMapLoad += OnMapLoad;
         Core.Event.OnMapUnload += OnMapUnload;
+        Core.Event.OnWorldUpdate += OnWorldUpdate;
         Core.Event.OnPrecacheResource += OnPrecache;
         Core.MenusAPI.MenuOpened += OnOtherMenu;
         _clientHook = Core.Command.HookClientCommand(OnClientCommand);
-        _events.Add(Core.GameEvent.HookPost<EventRoundStart>(_ => { CloseAll(); if (_catalog is { } catalog) _nativeBuyRules.Apply(catalog.Config); GiveRoundMoney(); return HookResult.Continue; }));
+        _events.Add(Core.GameEvent.HookPost<EventRoundStart>(_ => { CloseAll(); if (_catalog is { } catalog && WorldAvailable()) _nativeBuyRules.Apply(catalog.Config); GiveRoundMoney(); return HookResult.Continue; }));
         _events.Add(Core.GameEvent.HookPost<EventRoundEnd>(_ => { CloseAll(); return HookResult.Continue; }));
         _events.Add(Core.GameEvent.HookPost<EventPlayerDeath>(_ => { Prune(); return HookResult.Continue; }));
-        bool mapReady;
-        try { mapReady = Core.EntitySystem.GetGameRules() is not null; }
-        catch (InvalidOperationException) { mapReady = false; }
-        if (mapReady) EnsureSharedHud();
-        StartRefresh();
+        AwaitWorld();
         ReadConfiguration();
         Core.Logger.LogInformation("HanClassicBuyWheel 1.0.2 已加载，共享一个 HUD，SDK 1.4.13。HotReload={HotReload}", hotReload);
     });
@@ -106,7 +103,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
             string translationsPath = _translationsPath;
             string weaponsPath = _weaponsPath, knivesPath = _knivesPath;
             var result = await Task.Run(async () => (Catalog: new BuyCatalog(WheelConfig.Parse(await File.ReadAllTextAsync(path), await File.ReadAllTextAsync(weaponsPath), await File.ReadAllTextAsync(knivesPath))), Texts: WheelTranslations.Load(translationsPath)));
-            await Core.Scheduler.NextTickAsync(() =>
+            await Core.Scheduler.NextWorldUpdateAsync(() =>
             {
                 if (_unloaded || request != _configRequest) return;
                 if (_catalog?.Config.OpenCommand != result.Catalog.Config.OpenCommand)
@@ -118,8 +115,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
                     _openCommand = next;
                 }
                 CloseAll(); _catalog = result.Catalog; _texts = result.Texts; _configStatus = "配置有效";
-                _nativeBuyRules.Apply(result.Catalog.Config);
-                EnsureSharedHud();
+                if (_worldReady && WorldAvailable()) _nativeBuyRules.Apply(result.Catalog.Config);
                 Core.Logger.LogInformation("购买轮盘配置生效：{Mode}，{Count} 个物品。", result.Catalog.Config.Mode, result.Catalog.Items.Count);
             });
         }
@@ -134,6 +130,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     {
         if (_sessions.ContainsKey(player.SessionId)) { Close(player.SessionId); return; }
         if (_catalog is not { } catalog) { player.SendChat("[Buy Wheel] Configuration is not ready"); return; }
+        if (!_worldReady || !WorldAvailable()) { player.SendChat("[Buy Wheel] " + Failure(player, PurchaseFailure.NotReady)); return; }
         var failure = _buy.CheckPlayer(player, catalog);
         if (failure != PurchaseFailure.None) { player.SendChat("[Buy Wheel] " + Failure(player, failure)); PlayUiSound(player, true); return; }
         Open(player, catalog);
@@ -171,11 +168,12 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     private void StartRefresh()
     {
         StopRefresh(); _refresh = Core.Scheduler.RepeatBySeconds(0.25f, Refresh);
+        Core.Scheduler.StopOnMapChange(_refresh);
     }
     private void StopRefresh() { _refresh?.Cancel(); _refresh = null; }
     private void Refresh()
     {
-        if (_unloaded) return;
+        if (_unloaded || !_worldReady || !WorldAvailable()) return;
         if (_catalog is { } catalog) _nativeBuyRules.Refresh(catalog.Config);
         foreach (var session in _playerLanguages.Keys.ToArray()) if (Core.PlayerManager.GetPlayerFromSessionId(session) is null) _playerLanguages.Remove(session);
         foreach (var held in _heldMasks.Values.ToArray()) if (Resolve(held.Owner) is null) _heldMasks.Remove(held.Owner.Session);
@@ -198,7 +196,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     private bool IsCurrent(WheelSession view, out IPlayer? player)
     {
         player = Resolve(view.Owner);
-        return !_unloaded && view.Generation == _generation && ReferenceEquals(view.Catalog, _catalog)
+        return !_unloaded && _worldReady && WorldAvailable() && view.Generation == _generation && ReferenceEquals(view.Catalog, _catalog)
             && _sharedHud.Value is { IsValid: true }
             && _sessions.TryGetValue(view.Owner.Session, out var current) && ReferenceEquals(view, current)
             && player?.PlayerPawn is { IsValid: true } pawn && pawn.TeamNum == view.Team && view.Pawn.Raw == Core.EntitySystem.GetRefEHandle(pawn).Raw
@@ -224,12 +222,13 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         { _wasdOwners.Remove(owner.Session); _wasdMenus.Remove(owner.Session); }
         TryUninstallInput();
     }
-    private void OnMapLoad(IOnMapLoadEvent _) { if (!_unloaded) { EnsureSharedHud(); if (_catalog is { } catalog) _nativeBuyRules.Apply(catalog.Config); StartRefresh(); } }
+    private void OnMapLoad(IOnMapLoadEvent _) { if (!_unloaded) AwaitWorld(); }
     private void OnMapUnload(IOnMapUnloadEvent _)
     {
 #if WHEEL_LOCAL_TEST
         StopLocalHudTests();
 #endif
+        CancelWorld();
         ++_generation; StopRefresh(); CloseAll(); DestroySharedHud(); _heldMasks.Clear(); _pendingNativeOpens.Clear(); TryUninstallInput();
     }
     private void OnOtherMenu(object? _, MenuManagerEventArgs e)
@@ -237,6 +236,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     public override void Unload() => Lifecycle(() =>
     {
         _unloaded = true; ++_generation; ++_configRequest;
+        CancelWorld();
 #if WHEEL_LOCAL_TEST
         StopLocalHudTests();
 #endif
@@ -247,6 +247,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         Core.Event.OnClientPutInServer -= OnPutInServer;
         Core.Event.OnMapLoad -= OnMapLoad;
         Core.Event.OnMapUnload -= OnMapUnload;
+        Core.Event.OnWorldUpdate -= OnWorldUpdate;
         Core.Event.OnPrecacheResource -= OnPrecache;
         Core.MenusAPI.MenuOpened -= OnOtherMenu;
         Core.Command.UnhookClientCommand(_clientHook);
