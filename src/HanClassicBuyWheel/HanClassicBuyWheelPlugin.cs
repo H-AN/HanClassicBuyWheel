@@ -13,12 +13,17 @@ using SwiftlyS2.Shared.Plugins;
 
 namespace HanClassicBuyWheel;
 
-[PluginMetadata(Id = "HanClassicBuyWheel", Name = "Han Classic Buy Wheel", Author = "H-AN", Version = "1.0.1", Description = "独立经典购买轮盘、原生 Panorama UI 与配置驱动购买系统")]
+[PluginMetadata(Id = "HanClassicBuyWheel", Name = "Han Classic Buy Wheel", Author = "H-AN", Version = "1.0.2", Description = "共享单实体经典购买轮盘、原生 Panorama UI 与配置驱动购买系统")]
 public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePlugin(core)
 {
     private readonly Dictionary<ulong, WheelSession> _sessions = [];
     private readonly List<Guid> _commands = [], _events = [];
-    private readonly BuyService _buy = new(core);
+#if WHEEL_LOCAL_TEST
+    private const bool AllowBotsForLocalTest = true;
+#else
+    private const bool AllowBotsForLocalTest = false;
+#endif
+    private readonly BuyService _buy = new(core, AllowBotsForLocalTest);
     private readonly NativeBuyRules _nativeBuyRules = new(core);
     private BuyCatalog? _catalog;
     private Guid _clientHook;
@@ -34,7 +39,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     private IPlayer? Resolve(PlayerIdentity identity)
     {
         var player = Core.PlayerManager.GetPlayerFromSessionId(identity.Session);
-        return player is { IsValid: true, IsFakeClient: false } && Identity(player) == identity ? player : null;
+        return player is { IsValid: true } && (!player.IsFakeClient || AllowBotsForLocalTest) && Identity(player) == identity ? player : null;
     }
     private void Lifecycle(Action action)
     {
@@ -59,9 +64,13 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         Register("buywheel_wasd", context => WithPlayer(context, p => { Close(p.SessionId); OpenWasd(p); }));
         Register("buywheel_language", ChangeLanguage);
         Register("buywheel_reload", context => { context.Reply("配置重新读取已提交"); ReadConfiguration(); }, "hanclassicbuywheel.admin");
-        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.1 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count}"));
+        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.2 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count} | sharedHud={_sharedHud.Raw}"));
+#if WHEEL_LOCAL_TEST
+        RegisterLocalHudTests();
+#endif
         Core.Event.OnCustomHudClicked += OnHudClicked;
         Core.Event.OnClientDisconnected += OnDisconnected;
+        Core.Event.OnClientPutInServer += OnPutInServer;
         Core.Event.OnMapLoad += OnMapLoad;
         Core.Event.OnMapUnload += OnMapUnload;
         Core.Event.OnPrecacheResource += OnPrecache;
@@ -70,9 +79,13 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         _events.Add(Core.GameEvent.HookPost<EventRoundStart>(_ => { CloseAll(); if (_catalog is { } catalog) _nativeBuyRules.Apply(catalog.Config); GiveRoundMoney(); return HookResult.Continue; }));
         _events.Add(Core.GameEvent.HookPost<EventRoundEnd>(_ => { CloseAll(); return HookResult.Continue; }));
         _events.Add(Core.GameEvent.HookPost<EventPlayerDeath>(_ => { Prune(); return HookResult.Continue; }));
+        bool mapReady;
+        try { mapReady = Core.EntitySystem.GetGameRules() is not null; }
+        catch (InvalidOperationException) { mapReady = false; }
+        if (mapReady) EnsureSharedHud();
         StartRefresh();
         ReadConfiguration();
-        Core.Logger.LogInformation("HanClassicBuyWheel 1.0.1 已加载，SDK 1.4.13。HotReload={HotReload}", hotReload);
+        Core.Logger.LogInformation("HanClassicBuyWheel 1.0.2 已加载，共享一个 HUD，SDK 1.4.13。HotReload={HotReload}", hotReload);
     });
     private void Register(string name, ICommandService.CommandListener action, string permission = "")
     {
@@ -106,6 +119,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
                 }
                 CloseAll(); _catalog = result.Catalog; _texts = result.Texts; _configStatus = "配置有效";
                 _nativeBuyRules.Apply(result.Catalog.Config);
+                EnsureSharedHud();
                 Core.Logger.LogInformation("购买轮盘配置生效：{Mode}，{Count} 个物品。", result.Catalog.Config.Mode, result.Catalog.Items.Count);
             });
         }
@@ -185,6 +199,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
     {
         player = Resolve(view.Owner);
         return !_unloaded && view.Generation == _generation && ReferenceEquals(view.Catalog, _catalog)
+            && _sharedHud.Value is { IsValid: true }
             && _sessions.TryGetValue(view.Owner.Session, out var current) && ReferenceEquals(view, current)
             && player?.PlayerPawn is { IsValid: true } pawn && pawn.TeamNum == view.Team && view.Pawn.Raw == Core.EntitySystem.GetRefEHandle(pawn).Raw
             && _buy.CheckPlayer(player, view.Catalog) == PurchaseFailure.None;
@@ -209,17 +224,27 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         { _wasdOwners.Remove(owner.Session); _wasdMenus.Remove(owner.Session); }
         TryUninstallInput();
     }
-    private void OnMapLoad(IOnMapLoadEvent _) { if (!_unloaded) { if (_catalog is { } catalog) _nativeBuyRules.Apply(catalog.Config); StartRefresh(); } }
-    private void OnMapUnload(IOnMapUnloadEvent _) { ++_generation; StopRefresh(); CloseAll(); _heldMasks.Clear(); _pendingNativeOpens.Clear(); TryUninstallInput(); }
+    private void OnMapLoad(IOnMapLoadEvent _) { if (!_unloaded) { EnsureSharedHud(); if (_catalog is { } catalog) _nativeBuyRules.Apply(catalog.Config); StartRefresh(); } }
+    private void OnMapUnload(IOnMapUnloadEvent _)
+    {
+#if WHEEL_LOCAL_TEST
+        StopLocalHudTests();
+#endif
+        ++_generation; StopRefresh(); CloseAll(); DestroySharedHud(); _heldMasks.Clear(); _pendingNativeOpens.Clear(); TryUninstallInput();
+    }
     private void OnOtherMenu(object? _, MenuManagerEventArgs e)
     { if (e.Player is { IsValid: true } player) Close(player.SessionId); }
     public override void Unload() => Lifecycle(() =>
     {
         _unloaded = true; ++_generation; ++_configRequest;
-        StopRefresh(); CloseAll();
+#if WHEEL_LOCAL_TEST
+        StopLocalHudTests();
+#endif
+        StopRefresh(); CloseAll(); DestroySharedHud();
         _nativeBuyRules.Restore();
         Core.Event.OnCustomHudClicked -= OnHudClicked;
         Core.Event.OnClientDisconnected -= OnDisconnected;
+        Core.Event.OnClientPutInServer -= OnPutInServer;
         Core.Event.OnMapLoad -= OnMapLoad;
         Core.Event.OnMapUnload -= OnMapUnload;
         Core.Event.OnPrecacheResource -= OnPrecache;

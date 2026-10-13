@@ -2,7 +2,9 @@ using HanClassicBuyWheel.Domain;
 using HanClassicBuyWheel.Runtime;
 using HanClassicBuyWheel.Services;
 using Microsoft.Extensions.Logging;
+using System.Runtime.CompilerServices;
 using SwiftlyS2.Shared.Events;
+using SwiftlyS2.Shared.Natives;
 using SwiftlyS2.Shared.Players;
 using SwiftlyS2.Shared.SchemaDefinitions;
 
@@ -11,23 +13,55 @@ namespace HanClassicBuyWheel;
 public sealed partial class HanClassicBuyWheelPlugin
 {
     public const string LayoutPath = "panorama/layout/custom_game/hanclassicbuywheel.vxml_c";
+    private CHandle<CCSCustomHudLayout> _sharedHud;
+
+    private CCSCustomHudLayout EnsureSharedHud()
+    {
+        if (_sharedHud.Value is { IsValid: true } existing) return existing;
+        var hud = Core.EntitySystem.CreateEntity<CCSCustomHudLayout>();
+        if (hud is not { IsValid: true }) throw new InvalidOperationException("HUD 创建失败");
+        _sharedHud = Core.EntitySystem.GetRefEHandle(hud);
+        try
+        {
+            hud.StrLayout = LayoutPath; hud.StrLayoutUpdated();
+            hud.Observable = false; hud.ObservableUpdated();
+            hud.DispatchSpawn();
+            hud.SetInputCaptureEnabled(false);
+            hud.SetTransmitState(false);
+            return hud;
+        }
+        catch { DestroySharedHud(); throw; }
+    }
+
+    private void DestroySharedHud()
+    {
+        var hud = _sharedHud.Value;
+        _sharedHud = default;
+        if (hud is { IsValid: true }) hud.Despawn();
+    }
+
+    private void OnPutInServer(IOnClientPutInServerEvent e)
+    {
+        if (_sharedHud.Value is not { IsValid: true } hud) return;
+        // 新连接的传输屏蔽表会重建，不能只在创建实体时屏蔽已有玩家。
+        hud.SetTransmitState(false, e.PlayerId);
+        hud.SetInputCaptureEnabledForPlayer(e.PlayerId, false);
+    }
+
     private void Open(IPlayer player, BuyCatalog catalog)
     {
+        foreach (var previous in _sessions.Values.Where(v => v.Owner.Slot == player.PlayerID).ToArray()) Close(previous.Owner.Session);
         var pawn = player.PlayerPawn!;
         CloseWasd(player);
         var view = new WheelSession(Identity(player), _generation, catalog, pawn.TeamNum, Core.EntitySystem.GetRefEHandle(pawn));
         _sessions.Add(player.SessionId, view);
         try
         {
-            var hud = Core.EntitySystem.CreateEntity<CCSCustomHudLayout>();
-            if (hud is not { IsValid: true }) throw new InvalidOperationException("HUD 创建失败");
-            view.Hud = Core.EntitySystem.GetRefEHandle(hud);
-            hud.StrLayout = LayoutPath; hud.StrLayoutUpdated(); hud.DispatchSpawn();
-            hud.SetTransmitState(false); hud.SetTransmitState(true, player.PlayerID);
-            hud.SetInputCaptureEnabled(false);
+            var hud = EnsureSharedHud();
             view.LastButtons = pawn.MovementServices?.Buttons.ButtonStates[0] ?? 0;
             Render(view, player);
             hud.SetInputCaptureEnabledForPlayer(player.PlayerID, true);
+            hud.SetTransmitState(true, player.PlayerID);
             InstallInput();
         }
         catch (Exception ex)
@@ -37,16 +71,29 @@ public sealed partial class HanClassicBuyWheelPlugin
             Chat(player, "ui.failed");
         }
     }
-    private void Close(ulong session)
+    private void Close(ulong session, [CallerMemberName] string caller = "")
     {
         if (!_sessions.Remove(session, out var view)) return;
+#if WHEEL_LOCAL_TEST
+        try { RecordLocalHudClose(view, caller); }
+        catch (Exception ex) { Core.Logger.LogWarning(ex, "本地关闭来源记录失败，继续清理玩家状态。"); }
+#endif
         SuppressHeld(view);
-        if (view.Hud.Value is { IsValid: true } hud)
+        if (_sharedHud.Value is { IsValid: true } hud && !_sessions.Values.Any(v => v.Owner.Slot == view.Owner.Slot))
         {
-            try { hud.SetInputCaptureEnabledForPlayer(view.Owner.Slot, false); hud.SetInputCaptureEnabled(false); }
-            catch (Exception ex) { Core.Logger.LogWarning(ex, "HUD 输入释放失败，继续回收实体。"); }
-            try { hud.Despawn(); }
-            catch (Exception ex) { Core.Logger.LogWarning(ex, "HUD 实体回收失败。"); }
+            try
+            {
+                hud.SetTransmitState(false, view.Owner.Slot);
+                hud.SetInputCaptureEnabledForPlayer(view.Owner.Slot, false);
+                foreach (var id in view.TextCache.Keys)
+                    if (!id.StartsWith("icon:", StringComparison.Ordinal)) hud.RemoveDialogVariableStringForPlayer(view.Owner.Slot, id, "value");
+                foreach (var key in view.ClassCache.Keys)
+                {
+                    int separator = key.IndexOf(':');
+                    hud.SetHasClassForPlayer(view.Owner.Slot, key[..separator], key[(separator + 1)..], EHudPanelClassStatus_t.k_eHudPanelClassStatus_Undefined);
+                }
+            }
+            catch (Exception ex) { Core.Logger.LogWarning(ex, "共享 HUD 玩家状态清理失败：slot={Slot}, session={Session}", view.Owner.Slot, view.Owner.Session); }
         }
         TryUninstallInput();
     }
@@ -58,16 +105,18 @@ public sealed partial class HanClassicBuyWheelPlugin
         _wasdMenus.Clear(); _wasdOwners.Clear();
         if (_unloaded) { _heldMasks.Clear(); TryUninstallInput(); }
     }
-    private static void SetText(WheelSession view, string id, string text)
+    private void SetText(WheelSession view, string id, string text)
     {
         if (view.TextCache.TryGetValue(id, out var old) && old == text) return;
-        view.Hud.Value?.SetDialogVariableString(id, "value", text); view.TextCache[id] = text;
+        var hud = _sharedHud.Value ?? throw new InvalidOperationException("共享 HUD 已失效");
+        hud.SetDialogVariableStringForPlayer(view.Owner.Slot, id, "value", text); view.TextCache[id] = text;
     }
-    private static void SetClass(WheelSession view, string id, string name, bool enabled)
+    private void SetClass(WheelSession view, string id, string name, bool enabled)
     {
         string key = id + ":" + name;
         if (view.ClassCache.TryGetValue(key, out bool old) && old == enabled) return;
-        view.Hud.Value?.SetHasClass(id, name, enabled ? EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass
+        var hud = _sharedHud.Value ?? throw new InvalidOperationException("共享 HUD 已失效");
+        hud.SetHasClassForPlayer(view.Owner.Slot, id, name, enabled ? EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass
             : EHudPanelClassStatus_t.k_eHudPanelClassStatus_DoesNotHaveClass);
         view.ClassCache[key] = enabled;
     }
@@ -120,6 +169,9 @@ public sealed partial class HanClassicBuyWheelPlugin
             }
         }
         RenderSelection(view, player);
+        // 连接生命周期可能重置捕获位；仅为仍有效的个人菜单恢复输入。
+        var hud = _sharedHud.Value ?? throw new InvalidOperationException("共享 HUD 已失效");
+        if (!hud.IsInputCaptureEnabledForPlayer(view.Owner.Slot)) hud.SetInputCaptureEnabledForPlayer(view.Owner.Slot, true);
     }
     private void RenderSelection(WheelSession view, IPlayer player)
     {
@@ -172,11 +224,18 @@ public sealed partial class HanClassicBuyWheelPlugin
         var player = Core.PlayerManager.GetPlayer(e.PlayerId);
         if (player is not { IsValid: true } || !_sessions.TryGetValue(player.SessionId, out var view)
             || !IsCurrent(view, out _)
-            || view.Hud.Raw != Core.EntitySystem.GetRefEHandle(e.CustomHudLayout).Raw) return;
-        if (e.ButtonId == "hcw_language")
+            || _sharedHud.Raw != Core.EntitySystem.GetRefEHandle(e.CustomHudLayout).Raw) return;
+#if WHEEL_LOCAL_TEST
+        RecordLocalHudClick(player, e.ButtonId);
+#endif
+        HandleHudButton(player, view, e.ButtonId);
+    }
+    private void HandleHudButton(IPlayer player, WheelSession view, string buttonId)
+    {
+        if (buttonId == "hcw_language")
         { _playerLanguages[player.SessionId] = LanguageFor(player) == "en" ? "zh-CN" : "en"; PlayUiSound(player); Render(view, player); return; }
-        if (e.ButtonId.StartsWith("hcw_choice_", StringComparison.Ordinal)
-            && int.TryParse(e.ButtonId.AsSpan(11), out int index)) Act(player, "select", index);
-        else if (e.ButtonId is "hcw_back" or "hcw_close" or "hcw_next" or "hcw_prev" or "hcw_home") Act(player, e.ButtonId[4..]);
+        if (buttonId.StartsWith("hcw_choice_", StringComparison.Ordinal)
+            && int.TryParse(buttonId.AsSpan(11), out int index)) Act(player, "select", index);
+        else if (buttonId is "hcw_back" or "hcw_close" or "hcw_next" or "hcw_prev" or "hcw_home") Act(player, buttonId[4..]);
     }
 }

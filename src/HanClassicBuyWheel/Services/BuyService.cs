@@ -6,7 +6,7 @@ using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace HanClassicBuyWheel.Services;
 
-public sealed class BuyService(ISwiftlyCore core)
+public sealed class BuyService(ISwiftlyCore core, bool allowBots = false)
 {
     public static int Money(IPlayer player) => player.Controller.InGameMoneyServices?.Account ?? 0;
     public static void WriteMoney(IPlayer player, int amount)
@@ -18,11 +18,11 @@ public sealed class BuyService(ISwiftlyCore core)
     }
     public PurchaseFailure CheckPlayer(IPlayer player, BuyCatalog catalog)
     {
-        if (!player.IsValid || player.IsFakeClient || player.PlayerPawn is not { IsValid: true } pawn
+        if (!player.IsValid || player.IsFakeClient && !allowBots || player.PlayerPawn is not { IsValid: true } pawn
             || player.Controller is not { IsValid: true } controller || controller.InGameMoneyServices is not { IsValid: true }
             || pawn.ItemServices is not { IsValid: true } || pawn.WeaponServices is not { IsValid: true }) return PurchaseFailure.NotReady;
         if (!controller.PawnIsAlive || pawn.Health <= 0) return PurchaseFailure.Dead;
-        if (!catalog.AllowsWheel(pawn.TeamNum)) return PurchaseFailure.Team;
+        if (controller.TeamNum is not (2 or 3) || !catalog.AllowsWheel(pawn.TeamNum)) return PurchaseFailure.Team;
         if (catalog.Config.RequireBuyZone && !pawn.InBuyZone) return PurchaseFailure.BuyZone;
         if (catalog.Config.RequireBuyTime && core.EntitySystem.GetGameRules() is not { BuyTimeEnded: false }) return PurchaseFailure.BuyTime;
         return PurchaseFailure.None;

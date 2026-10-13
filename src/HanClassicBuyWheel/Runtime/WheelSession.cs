@@ -12,7 +12,6 @@ public sealed class WheelSession(PlayerIdentity owner, long generation, BuyCatal
     public BuyCatalog Catalog { get; } = catalog;
     public int Team { get; } = team;
     public CHandle<CCSPlayerPawn> Pawn { get; } = pawn;
-    public CHandle<CCSCustomHudLayout> Hud;
     public WheelNavigation Navigation { get; } = new(catalog.BuildTree(team));
     public MenuNode[] Rows = [];
     public readonly Dictionary<string, string> TextCache = [];
