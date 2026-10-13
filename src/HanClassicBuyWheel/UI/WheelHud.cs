@@ -69,6 +69,10 @@ public sealed partial class HanClassicBuyWheelPlugin
         foreach (var previous in _sessions.Values.Where(v => v.Owner.Slot == player.PlayerID).ToArray()) Close(previous.Owner.Session);
         var pawn = player.PlayerPawn!;
         CloseWasd(player);
+        // 原菜单关闭可能返回父页；在建立轮盘会话前释放本人的整条交互菜单链。
+        var visited = new HashSet<SwiftlyS2.Shared.Menus.IMenuAPI>(ReferenceEqualityComparer.Instance);
+        while (Core.MenusAPI.GetCurrentMenu(player) is { } menu && visited.Add(menu))
+            Core.MenusAPI.CloseMenuForPlayer(player, menu);
         var view = new WheelSession(Identity(player), _generation, catalog, pawn.TeamNum, Core.EntitySystem.GetRefEHandle(pawn));
         _sessions.Add(player.SessionId, view);
         try

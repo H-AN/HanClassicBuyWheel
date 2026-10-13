@@ -13,7 +13,7 @@ using SwiftlyS2.Shared.Plugins;
 
 namespace HanClassicBuyWheel;
 
-[PluginMetadata(Id = "HanClassicBuyWheel", Name = "Han Classic Buy Wheel", Author = "H-AN", Version = "1.0.2", Description = "共享单实体经典购买轮盘、原生 Panorama UI 与配置驱动购买系统")]
+[PluginMetadata(Id = "HanClassicBuyWheel", Name = "Han Classic Buy Wheel", Author = "H-AN", Version = "1.0.3", Description = "共享单实体经典购买轮盘、原生 Panorama UI 与配置驱动购买系统")]
 public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePlugin(core)
 {
     private readonly Dictionary<ulong, WheelSession> _sessions = [];
@@ -64,7 +64,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         Register("buywheel_wasd", context => WithPlayer(context, p => { Close(p.SessionId); OpenWasd(p); }));
         Register("buywheel_language", ChangeLanguage);
         Register("buywheel_reload", context => { context.Reply("配置重新读取已提交"); ReadConfiguration(); }, "hanclassicbuywheel.admin");
-        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.2 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count} | sharedHud={_sharedHud.Raw} | worldReady={_worldReady} | hudCount={CountSharedHuds()}"));
+        Register("buywheel_status", context => context.Reply($"HanClassicBuyWheel 1.0.3 | {_configStatus} | mode={_catalog?.Config.Mode} | sessions={_sessions.Count} | sharedHud={_sharedHud.Raw} | worldReady={_worldReady} | hudCount={CountSharedHuds()}"));
 #if WHEEL_LOCAL_TEST
         RegisterLocalHudTests();
 #endif
@@ -82,7 +82,7 @@ public sealed partial class HanClassicBuyWheelPlugin(ISwiftlyCore core) : BasePl
         _events.Add(Core.GameEvent.HookPost<EventPlayerDeath>(_ => { Prune(); return HookResult.Continue; }));
         AwaitWorld();
         ReadConfiguration();
-        Core.Logger.LogInformation("HanClassicBuyWheel 1.0.2 已加载，共享一个 HUD，SDK 1.4.13。HotReload={HotReload}", hotReload);
+        Core.Logger.LogInformation("HanClassicBuyWheel 1.0.3 已加载，共享一个 HUD，SDK 1.4.13。HotReload={HotReload}", hotReload);
     });
     private void Register(string name, ICommandService.CommandListener action, string permission = "")
     {
