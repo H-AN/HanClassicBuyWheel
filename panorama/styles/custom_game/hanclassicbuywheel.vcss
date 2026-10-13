@@ -1,5 +1,5 @@
-.Screen { width: 100%; height: 100%; background-color: #080a0cc9; }
-.TeamScope { width: 100%; height: 100%; }
+.Screen { width: 100%; height: 100%; }
+.TeamScope { width: 100%; height: 100%; background-color: #080a0cc9; }
 .Window { width: 1130px; height: 865px; horizontal-align: center; vertical-align: center; flow-children: down; }
 Label { color: #eee8dc; font-family: Stratum2, "Noto Sans CJK SC", "Microsoft YaHei", Arial; text-overflow: shrink; }
 .Header { width: 100%; height: 90px; flow-children: none; border-bottom: 1px solid #ffffff18; }

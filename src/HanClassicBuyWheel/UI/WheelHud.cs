@@ -32,6 +32,7 @@ public sealed partial class HanClassicBuyWheelPlugin
             hud.StrLayout = LayoutPath; hud.StrLayoutUpdated();
             hud.Observable = false; hud.ObservableUpdated();
             hud.DispatchSpawn();
+            hud.SetHasClass("hcw_screen", "empty", EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass);
             hud.SetInputCaptureEnabled(false);
             hud.SetTransmitState(false);
             return hud;
@@ -56,8 +57,9 @@ public sealed partial class HanClassicBuyWheelPlugin
         {
             var hud = EnsureSharedHud();
             // 新连接的传输屏蔽表会重建，不能只在创建实体时屏蔽已有玩家。
-            hud.SetTransmitState(false, e.PlayerId);
+            hud.SetHasClassForPlayer(e.PlayerId, "hcw_screen", "empty", EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass);
             hud.SetInputCaptureEnabledForPlayer(e.PlayerId, false);
+            hud.SetTransmitState(false, e.PlayerId);
         }
         catch (Exception ex) { Core.Logger.LogError(ex, "购买轮盘入服 HUD 初始化失败：slot={Slot}", e.PlayerId); }
     }
@@ -74,6 +76,7 @@ public sealed partial class HanClassicBuyWheelPlugin
             var hud = EnsureSharedHud();
             view.LastButtons = pawn.MovementServices?.Buttons.ButtonStates[0] ?? 0;
             Render(view, player);
+            SetClass(view, "hcw_screen", "empty", false);
             hud.SetInputCaptureEnabledForPlayer(player.PlayerID, true);
             hud.SetTransmitState(true, player.PlayerID);
             InstallInput();
@@ -98,15 +101,19 @@ public sealed partial class HanClassicBuyWheelPlugin
         {
             try
             {
-                hud.SetTransmitState(false, view.Owner.Slot);
+                // 停止传输不会通知客户端关闭布局，且会阻止下面的隐藏状态送达。
+                hud.SetHasClassForPlayer(view.Owner.Slot, "hcw_screen", "empty", EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass);
                 hud.SetInputCaptureEnabledForPlayer(view.Owner.Slot, false);
                 foreach (var id in view.TextCache.Keys)
                     if (!id.StartsWith("icon:", StringComparison.Ordinal)) hud.RemoveDialogVariableStringForPlayer(view.Owner.Slot, id, "value");
                 foreach (var key in view.ClassCache.Keys)
                 {
+                    if (key == "hcw_screen:empty") continue;
                     int separator = key.IndexOf(':');
                     hud.SetHasClassForPlayer(view.Owner.Slot, key[..separator], key[(separator + 1)..], EHudPanelClassStatus_t.k_eHudPanelClassStatus_Undefined);
                 }
+                // 已接收过布局的客户端继续接收个人隐藏状态，直到换图／卸载回收实体。
+                hud.SetTransmitState(true, view.Owner.Slot);
             }
             catch (Exception ex) { Core.Logger.LogWarning(ex, "共享 HUD 玩家状态清理失败：slot={Slot}, session={Session}", view.Owner.Slot, view.Owner.Session); }
         }
